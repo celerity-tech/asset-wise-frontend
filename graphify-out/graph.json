@@ -91,7 +91,7 @@
       "source_file": "src/app/app.routes.ts",
       "source_location": "L6",
       "id": "app_app_routes_routes",
-      "community": 0,
+      "community": 3,
       "norm_label": "routes"
     },
     {
@@ -122,48 +122,21 @@
       "norm_label": "app"
     },
     {
-      "label": "icon.ts",
-      "file_type": "code",
-      "source_file": "src/app/layout/icon.ts",
-      "source_location": "L1",
-      "id": "src_app_layout_icon_ts",
-      "community": 6,
-      "norm_label": "icon.ts"
-    },
-    {
-      "label": "IconName",
-      "file_type": "code",
-      "source_file": "src/app/layout/icon.ts",
-      "source_location": "L3",
-      "id": "layout_icon_iconname",
-      "community": 6,
-      "norm_label": "iconname"
-    },
-    {
-      "label": "LayoutIcon",
-      "file_type": "code",
-      "source_file": "src/app/layout/icon.ts",
-      "source_location": "L113",
-      "id": "layout_icon_layouticon",
-      "community": 6,
-      "norm_label": "layouticon"
-    },
-    {
       "label": "layout.ts",
       "file_type": "code",
       "source_file": "src/app/layout/layout.ts",
       "source_location": "L1",
       "id": "src_app_layout_layout_ts",
-      "community": 6,
+      "community": 0,
       "norm_label": "layout.ts"
     },
     {
       "label": "NavItem",
       "file_type": "code",
       "source_file": "src/app/layout/layout.ts",
-      "source_location": "L19",
+      "source_location": "L18",
       "id": "layout_layout_navitem",
-      "community": 6,
+      "community": 0,
       "norm_label": "navitem"
     },
     {
@@ -413,7 +386,7 @@
       "label": "AuthService",
       "file_type": "code",
       "source_file": "src/app/modules/auth/services/auth.service.ts",
-      "source_location": "L11",
+      "source_location": "L12",
       "id": "services_auth_service_authservice",
       "community": 0,
       "norm_label": "authservice"
@@ -422,7 +395,7 @@
       "label": ".login()",
       "file_type": "code",
       "source_file": "src/app/modules/auth/services/auth.service.ts",
-      "source_location": "L18",
+      "source_location": "L19",
       "id": "services_auth_service_authservice_login",
       "community": 0,
       "norm_label": ".login()"
@@ -431,7 +404,7 @@
       "label": ".logout()",
       "file_type": "code",
       "source_file": "src/app/modules/auth/services/auth.service.ts",
-      "source_location": "L25",
+      "source_location": "L26",
       "id": "services_auth_service_authservice_logout",
       "community": 0,
       "norm_label": ".logout()"
@@ -440,7 +413,7 @@
       "label": ".isAuthenticated()",
       "file_type": "code",
       "source_file": "src/app/modules/auth/services/auth.service.ts",
-      "source_location": "L30",
+      "source_location": "L32",
       "id": "services_auth_service_authservice_isauthenticated",
       "community": 0,
       "norm_label": ".isauthenticated()"
@@ -449,7 +422,7 @@
       "label": ".token()",
       "file_type": "code",
       "source_file": "src/app/modules/auth/services/auth.service.ts",
-      "source_location": "L34",
+      "source_location": "L36",
       "id": "services_auth_service_authservice_token",
       "community": 0,
       "norm_label": ".token()"
@@ -458,64 +431,19 @@
       "label": ".persistSession()",
       "file_type": "code",
       "source_file": "src/app/modules/auth/services/auth.service.ts",
-      "source_location": "L38",
+      "source_location": "L40",
       "id": "services_auth_service_authservice_persistsession",
       "community": 0,
       "norm_label": ".persistsession()"
     },
     {
-      "label": "categories.service.ts",
+      "label": ".restoreUser()",
       "file_type": "code",
-      "source_file": "src/app/modules/categories/categories.service.ts",
-      "source_location": "L1",
-      "id": "src_app_modules_categories_categories_service_ts",
-      "community": 4,
-      "norm_label": "categories.service.ts"
-    },
-    {
-      "label": "CategoriesService",
-      "file_type": "code",
-      "source_file": "src/app/modules/categories/categories.service.ts",
-      "source_location": "L14",
-      "id": "categories_categories_service_categoriesservice",
-      "community": 4,
-      "norm_label": "categoriesservice"
-    },
-    {
-      "label": ".list()",
-      "file_type": "code",
-      "source_file": "src/app/modules/categories/categories.service.ts",
-      "source_location": "L18",
-      "id": "categories_categories_service_categoriesservice_list",
-      "community": 4,
-      "norm_label": ".list()"
-    },
-    {
-      "label": ".create()",
-      "file_type": "code",
-      "source_file": "src/app/modules/categories/categories.service.ts",
-      "source_location": "L22",
-      "id": "categories_categories_service_categoriesservice_create",
-      "community": 4,
-      "norm_label": ".create()"
-    },
-    {
-      "label": ".update()",
-      "file_type": "code",
-      "source_file": "src/app/modules/categories/categories.service.ts",
-      "source_location": "L26",
-      "id": "categories_categories_service_categoriesservice_update",
-      "community": 4,
-      "norm_label": ".update()"
-    },
-    {
-      "label": ".archive()",
-      "file_type": "code",
-      "source_file": "src/app/modules/categories/categories.service.ts",
-      "source_location": "L33",
-      "id": "categories_categories_service_categoriesservice_archive",
-      "community": 4,
-      "norm_label": ".archive()"
+      "source_file": "src/app/modules/auth/services/auth.service.ts",
+      "source_location": "L46",
+      "id": "services_auth_service_authservice_restoreuser",
+      "community": 0,
+      "norm_label": ".restoreuser()"
     },
     {
       "label": "categories.spec.ts",
@@ -539,7 +467,7 @@
       "label": "Categories",
       "file_type": "code",
       "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L27",
+      "source_location": "L30",
       "id": "categories_categories_categories",
       "community": 7,
       "norm_label": "categories"
@@ -548,7 +476,7 @@
       "label": ".constructor()",
       "file_type": "code",
       "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L65",
+      "source_location": "L68",
       "id": "categories_categories_categories_constructor",
       "community": 7,
       "norm_label": ".constructor()"
@@ -557,7 +485,7 @@
       "label": ".load()",
       "file_type": "code",
       "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L75",
+      "source_location": "L78",
       "id": "categories_categories_categories_load",
       "community": 7,
       "norm_label": ".load()"
@@ -566,7 +494,7 @@
       "label": ".addCategory()",
       "file_type": "code",
       "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L90",
+      "source_location": "L93",
       "id": "categories_categories_categories_addcategory",
       "community": 7,
       "norm_label": ".addcategory()"
@@ -575,7 +503,7 @@
       "label": ".startEdit()",
       "file_type": "code",
       "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L121",
+      "source_location": "L126",
       "id": "categories_categories_categories_startedit",
       "community": 7,
       "norm_label": ".startedit()"
@@ -584,7 +512,7 @@
       "label": ".saveEdit()",
       "file_type": "code",
       "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L128",
+      "source_location": "L133",
       "id": "categories_categories_categories_saveedit",
       "community": 7,
       "norm_label": ".saveedit()"
@@ -593,7 +521,7 @@
       "label": ".cancelEdit()",
       "file_type": "code",
       "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L163",
+      "source_location": "L170",
       "id": "categories_categories_categories_canceledit",
       "community": 7,
       "norm_label": ".canceledit()"
@@ -602,7 +530,7 @@
       "label": ".confirmArchive()",
       "file_type": "code",
       "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L168",
+      "source_location": "L175",
       "id": "categories_categories_categories_confirmarchive",
       "community": 7,
       "norm_label": ".confirmarchive()"
@@ -611,7 +539,7 @@
       "label": ".cancelArchive()",
       "file_type": "code",
       "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L174",
+      "source_location": "L181",
       "id": "categories_categories_categories_cancelarchive",
       "community": 7,
       "norm_label": ".cancelarchive()"
@@ -620,7 +548,7 @@
       "label": ".archive()",
       "file_type": "code",
       "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L179",
+      "source_location": "L186",
       "id": "categories_categories_categories_archive",
       "community": 4,
       "norm_label": ".archive()"
@@ -629,16 +557,16 @@
       "label": ".isEditing()",
       "file_type": "code",
       "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L198",
+      "source_location": "L207",
       "id": "categories_categories_categories_isediting",
-      "community": 4,
+      "community": 7,
       "norm_label": ".isediting()"
     },
     {
       "label": ".isArchiving()",
       "file_type": "code",
       "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L202",
+      "source_location": "L211",
       "id": "categories_categories_categories_isarchiving",
       "community": 4,
       "norm_label": ".isarchiving()"
@@ -647,25 +575,16 @@
       "label": ".onEscape()",
       "file_type": "code",
       "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L206",
+      "source_location": "L215",
       "id": "categories_categories_categories_onescape",
       "community": 7,
       "norm_label": ".onescape()"
     },
     {
-      "label": ".sortByName()",
-      "file_type": "code",
-      "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L211",
-      "id": "categories_categories_categories_sortbyname",
-      "community": 4,
-      "norm_label": ".sortbyname()"
-    },
-    {
       "label": ".nameTaken()",
       "file_type": "code",
       "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L217",
+      "source_location": "L220",
       "id": "categories_categories_categories_nametaken",
       "community": 7,
       "norm_label": ".nametaken()"
@@ -674,46 +593,91 @@
       "label": ".messageFor()",
       "file_type": "code",
       "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L224",
+      "source_location": "L227",
       "id": "categories_categories_categories_messagefor",
       "community": 7,
       "norm_label": ".messagefor()"
     },
     {
-      "label": "category.model.ts",
+      "label": "categories.service.ts",
       "file_type": "code",
-      "source_file": "src/app/modules/categories/category.model.ts",
+      "source_file": "src/app/modules/categories/services/categories.service.ts",
       "source_location": "L1",
-      "id": "src_app_modules_categories_category_model_ts",
+      "id": "src_app_modules_categories_services_categories_service_ts",
       "community": 4,
-      "norm_label": "category.model.ts"
+      "norm_label": "categories.service.ts"
+    },
+    {
+      "label": "CategoriesService",
+      "file_type": "code",
+      "source_file": "src/app/modules/categories/services/categories.service.ts",
+      "source_location": "L15",
+      "id": "services_categories_service_categoriesservice",
+      "community": 4,
+      "norm_label": "categoriesservice"
+    },
+    {
+      "label": ".list()",
+      "file_type": "code",
+      "source_file": "src/app/modules/categories/services/categories.service.ts",
+      "source_location": "L19",
+      "id": "services_categories_service_categoriesservice_list",
+      "community": 4,
+      "norm_label": ".list()"
+    },
+    {
+      "label": ".create()",
+      "file_type": "code",
+      "source_file": "src/app/modules/categories/services/categories.service.ts",
+      "source_location": "L23",
+      "id": "services_categories_service_categoriesservice_create",
+      "community": 4,
+      "norm_label": ".create()"
+    },
+    {
+      "label": ".update()",
+      "file_type": "code",
+      "source_file": "src/app/modules/categories/services/categories.service.ts",
+      "source_location": "L27",
+      "id": "services_categories_service_categoriesservice_update",
+      "community": 4,
+      "norm_label": ".update()"
+    },
+    {
+      "label": ".archive()",
+      "file_type": "code",
+      "source_file": "src/app/modules/categories/services/categories.service.ts",
+      "source_location": "L34",
+      "id": "services_categories_service_categoriesservice_archive",
+      "community": 4,
+      "norm_label": ".archive()"
+    },
+    {
+      "label": "category.types.ts",
+      "file_type": "code",
+      "source_file": "src/app/modules/categories/types/category.types.ts",
+      "source_location": "L1",
+      "id": "src_app_modules_categories_types_category_types_ts",
+      "community": 4,
+      "norm_label": "category.types.ts"
     },
     {
       "label": "Category",
       "file_type": "code",
-      "source_file": "src/app/modules/categories/category.model.ts",
+      "source_file": "src/app/modules/categories/types/category.types.ts",
       "source_location": "L2",
-      "id": "categories_category_model_category",
+      "id": "types_category_types_category",
       "community": 4,
       "norm_label": "category"
     },
     {
       "label": "CategoryRequest",
       "file_type": "code",
-      "source_file": "src/app/modules/categories/category.model.ts",
+      "source_file": "src/app/modules/categories/types/category.types.ts",
       "source_location": "L12",
-      "id": "categories_category_model_categoryrequest",
+      "id": "types_category_types_categoryrequest",
       "community": 4,
       "norm_label": "categoryrequest"
-    },
-    {
-      "label": "ApiResponse",
-      "file_type": "code",
-      "source_file": "src/app/modules/categories/category.model.ts",
-      "source_location": "L18",
-      "id": "categories_category_model_apiresponse",
-      "community": 4,
-      "norm_label": "apiresponse"
     },
     {
       "label": "asset-wise-preset.ts",
@@ -732,6 +696,24 @@
       "id": "theme_asset_wise_preset_assetwisepreset",
       "community": 3,
       "norm_label": "assetwisepreset"
+    },
+    {
+      "label": "api.response.ts",
+      "file_type": "code",
+      "source_file": "src/common/responses/api.response.ts",
+      "source_location": "L1",
+      "id": "src_common_responses_api_response_ts",
+      "community": 4,
+      "norm_label": "api.response.ts"
+    },
+    {
+      "label": "ApiResponse",
+      "file_type": "code",
+      "source_file": "src/common/responses/api.response.ts",
+      "source_location": "L1",
+      "id": "responses_api_response_apiresponse",
+      "community": 4,
+      "norm_label": "apiresponse"
     },
     {
       "label": "environment.dev.ts",
@@ -768,6 +750,15 @@
       "id": "environments_environment_environment",
       "community": 4,
       "norm_label": "environment"
+    },
+    {
+      "label": ".sortByName()",
+      "file_type": "code",
+      "source_file": "src/app/modules/categories/categories.ts",
+      "source_location": "L211",
+      "community": 7,
+      "norm_label": ".sortbyname()",
+      "id": "categories_categories_categories_sortbyname"
     },
     {
       "label": "Application Bootstrap",
@@ -833,19 +824,6 @@
       "community": 1,
       "norm_label": "layout (app shell component)",
       "id": "layout_Layout"
-    },
-    {
-      "label": "LayoutIcon Component",
-      "file_type": "code",
-      "source_file": "src/app/layout/icon.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 1,
-      "norm_label": "layouticon component",
-      "id": "icon_LayoutIcon"
     },
     {
       "label": "authGuard (CanActivateFn)",
@@ -1051,9 +1029,9 @@
       "source_file": "src/main.ts",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_main_ts",
-      "target": "app_app_app",
-      "confidence_score": 1.0
+      "target": "app_app_app"
     },
     {
       "relation": "imports",
@@ -1062,9 +1040,9 @@
       "source_file": "src/main.ts",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_main_ts",
-      "target": "app_app_config_appconfig",
-      "confidence_score": 1.0
+      "target": "app_app_config_appconfig"
     },
     {
       "relation": "imports_from",
@@ -1073,9 +1051,9 @@
       "source_file": "src/main.ts",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_main_ts",
-      "target": "src_app_app_config_ts",
-      "confidence_score": 1.0
+      "target": "src_app_app_config_ts"
     },
     {
       "relation": "imports_from",
@@ -1084,9 +1062,9 @@
       "source_file": "src/main.ts",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_main_ts",
-      "target": "src_app_app_ts",
-      "confidence_score": 1.0
+      "target": "src_app_app_ts"
     },
     {
       "relation": "contains",
@@ -1094,9 +1072,9 @@
       "source_file": "src/app/app.config.ts",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_app_config_ts",
-      "target": "app_app_config_appconfig",
-      "confidence_score": 1.0
+      "target": "app_app_config_appconfig"
     },
     {
       "relation": "imports",
@@ -1105,9 +1083,9 @@
       "source_file": "src/app/app.config.ts",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_app_config_ts",
-      "target": "app_app_routes_routes",
-      "confidence_score": 1.0
+      "target": "app_app_routes_routes"
     },
     {
       "relation": "imports",
@@ -1116,9 +1094,9 @@
       "source_file": "src/app/app.config.ts",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_app_config_ts",
-      "target": "interceptors_auth_interceptor_authinterceptor",
-      "confidence_score": 1.0
+      "target": "interceptors_auth_interceptor_authinterceptor"
     },
     {
       "relation": "imports_from",
@@ -1127,9 +1105,9 @@
       "source_file": "src/app/app.config.ts",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_app_config_ts",
-      "target": "src_app_app_routes_ts",
-      "confidence_score": 1.0
+      "target": "src_app_app_routes_ts"
     },
     {
       "relation": "imports_from",
@@ -1138,9 +1116,9 @@
       "source_file": "src/app/app.config.ts",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_app_config_ts",
-      "target": "src_app_modules_auth_interceptors_auth_interceptor_ts",
-      "confidence_score": 1.0
+      "target": "src_app_modules_auth_interceptors_auth_interceptor_ts"
     },
     {
       "relation": "imports_from",
@@ -1149,9 +1127,9 @@
       "source_file": "src/app/app.config.ts",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_app_config_ts",
-      "target": "src_app_theme_asset_wise_preset_ts",
-      "confidence_score": 1.0
+      "target": "src_app_theme_asset_wise_preset_ts"
     },
     {
       "relation": "imports",
@@ -1160,9 +1138,9 @@
       "source_file": "src/app/app.config.ts",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_app_config_ts",
-      "target": "theme_asset_wise_preset_assetwisepreset",
-      "confidence_score": 1.0
+      "target": "theme_asset_wise_preset_assetwisepreset"
     },
     {
       "relation": "contains",
@@ -1170,9 +1148,9 @@
       "source_file": "src/app/app.routes.ts",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_app_routes_ts",
-      "target": "app_app_routes_routes",
-      "confidence_score": 1.0
+      "target": "app_app_routes_routes"
     },
     {
       "relation": "imports",
@@ -1181,9 +1159,9 @@
       "source_file": "src/app/app.routes.ts",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_app_routes_ts",
-      "target": "guards_auth_guard_authguard",
-      "confidence_score": 1.0
+      "target": "guards_auth_guard_authguard"
     },
     {
       "relation": "imports",
@@ -1192,9 +1170,9 @@
       "source_file": "src/app/app.routes.ts",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_app_routes_ts",
-      "target": "guards_guest_guard_guestguard",
-      "confidence_score": 1.0
+      "target": "guards_guest_guard_guestguard"
     },
     {
       "relation": "imports_from",
@@ -1203,9 +1181,9 @@
       "source_file": "src/app/app.routes.ts",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_app_routes_ts",
-      "target": "src_app_modules_auth_guards_auth_guard_ts",
-      "confidence_score": 1.0
+      "target": "src_app_modules_auth_guards_auth_guard_ts"
     },
     {
       "relation": "imports_from",
@@ -1214,9 +1192,9 @@
       "source_file": "src/app/app.routes.ts",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_app_routes_ts",
-      "target": "src_app_modules_auth_guards_guest_guard_ts",
-      "confidence_score": 1.0
+      "target": "src_app_modules_auth_guards_guest_guard_ts"
     },
     {
       "relation": "imports",
@@ -1225,9 +1203,9 @@
       "source_file": "src/app/app.spec.ts",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_app_spec_ts",
-      "target": "app_app_app",
-      "confidence_score": 1.0
+      "target": "app_app_app"
     },
     {
       "relation": "imports_from",
@@ -1236,9 +1214,9 @@
       "source_file": "src/app/app.spec.ts",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_app_spec_ts",
-      "target": "src_app_app_ts",
-      "confidence_score": 1.0
+      "target": "src_app_app_ts"
     },
     {
       "relation": "contains",
@@ -1246,95 +1224,9 @@
       "source_file": "src/app/app.ts",
       "source_location": "L10",
       "weight": 1.0,
-      "source": "src_app_app_ts",
-      "target": "app_app_app",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/layout/icon.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "src_app_layout_icon_ts",
-      "target": "layout_icon_iconname",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/layout/icon.ts",
-      "source_location": "L113",
-      "weight": 1.0,
-      "source": "src_app_layout_icon_ts",
-      "target": "layout_icon_layouticon",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/layout/layout.ts",
-      "source_location": "L17",
-      "weight": 1.0,
-      "source": "src_app_layout_layout_ts",
-      "target": "src_app_layout_icon_ts",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L16",
-      "weight": 1.0,
-      "source": "src_app_modules_categories_categories_ts",
-      "target": "src_app_layout_icon_ts",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "field",
-      "confidence": "EXTRACTED",
-      "source_file": "app/layout/layout.ts",
-      "source_location": "L21",
-      "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "layout_layout_navitem",
-      "target": "layout_icon_iconname"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/layout/layout.ts",
-      "source_location": "L17",
-      "weight": 1.0,
-      "source": "src_app_layout_layout_ts",
-      "target": "layout_icon_iconname",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/layout/layout.ts",
-      "source_location": "L17",
-      "weight": 1.0,
-      "source": "src_app_layout_layout_ts",
-      "target": "layout_icon_layouticon",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L16",
-      "weight": 1.0,
-      "source": "src_app_modules_categories_categories_ts",
-      "target": "layout_icon_layouticon",
-      "confidence_score": 1.0
+      "source": "src_app_app_ts",
+      "target": "app_app_app"
     },
     {
       "relation": "contains",
@@ -1342,9 +1234,9 @@
       "source_file": "src/app/layout/layout.ts",
       "source_location": "L33",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_layout_layout_ts",
-      "target": "layout_layout_layout",
-      "confidence_score": 1.0
+      "target": "layout_layout_layout"
     },
     {
       "relation": "contains",
@@ -1352,9 +1244,9 @@
       "source_file": "src/app/layout/layout.ts",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_layout_layout_ts",
-      "target": "layout_layout_navitem",
-      "confidence_score": 1.0
+      "target": "layout_layout_navitem"
     },
     {
       "relation": "imports",
@@ -1363,9 +1255,9 @@
       "source_file": "src/app/layout/layout.ts",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_layout_layout_ts",
-      "target": "services_auth_service_authservice",
-      "confidence_score": 1.0
+      "target": "services_auth_service_authservice"
     },
     {
       "relation": "imports_from",
@@ -1374,9 +1266,9 @@
       "source_file": "src/app/layout/layout.ts",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_layout_layout_ts",
-      "target": "src_app_modules_auth_services_auth_service_ts",
-      "confidence_score": 1.0
+      "target": "src_app_modules_auth_services_auth_service_ts"
     },
     {
       "relation": "method",
@@ -1485,9 +1377,9 @@
       "source_file": "src/app/modules/auth/guards/auth.guard.ts",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_auth_guards_auth_guard_ts",
-      "target": "guards_auth_guard_authguard",
-      "confidence_score": 1.0
+      "target": "guards_auth_guard_authguard"
     },
     {
       "relation": "imports",
@@ -1496,9 +1388,9 @@
       "source_file": "src/app/modules/auth/guards/auth.guard.ts",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_auth_guards_auth_guard_ts",
-      "target": "services_auth_service_authservice",
-      "confidence_score": 1.0
+      "target": "services_auth_service_authservice"
     },
     {
       "relation": "imports_from",
@@ -1507,9 +1399,9 @@
       "source_file": "src/app/modules/auth/guards/auth.guard.ts",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_auth_guards_auth_guard_ts",
-      "target": "src_app_modules_auth_services_auth_service_ts",
-      "confidence_score": 1.0
+      "target": "src_app_modules_auth_services_auth_service_ts"
     },
     {
       "relation": "contains",
@@ -1517,9 +1409,9 @@
       "source_file": "src/app/modules/auth/guards/guest.guard.ts",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_auth_guards_guest_guard_ts",
-      "target": "guards_guest_guard_guestguard",
-      "confidence_score": 1.0
+      "target": "guards_guest_guard_guestguard"
     },
     {
       "relation": "imports",
@@ -1528,9 +1420,9 @@
       "source_file": "src/app/modules/auth/guards/guest.guard.ts",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_auth_guards_guest_guard_ts",
-      "target": "services_auth_service_authservice",
-      "confidence_score": 1.0
+      "target": "services_auth_service_authservice"
     },
     {
       "relation": "imports_from",
@@ -1539,9 +1431,9 @@
       "source_file": "src/app/modules/auth/guards/guest.guard.ts",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_auth_guards_guest_guard_ts",
-      "target": "src_app_modules_auth_services_auth_service_ts",
-      "confidence_score": 1.0
+      "target": "src_app_modules_auth_services_auth_service_ts"
     },
     {
       "relation": "contains",
@@ -1549,9 +1441,9 @@
       "source_file": "src/app/modules/auth/interceptors/auth.interceptor.ts",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_auth_interceptors_auth_interceptor_ts",
-      "target": "interceptors_auth_interceptor_authinterceptor",
-      "confidence_score": 1.0
+      "target": "interceptors_auth_interceptor_authinterceptor"
     },
     {
       "relation": "imports",
@@ -1560,9 +1452,9 @@
       "source_file": "src/app/modules/auth/interceptors/auth.interceptor.ts",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_auth_interceptors_auth_interceptor_ts",
-      "target": "services_auth_service_authservice",
-      "confidence_score": 1.0
+      "target": "services_auth_service_authservice"
     },
     {
       "relation": "imports_from",
@@ -1571,9 +1463,9 @@
       "source_file": "src/app/modules/auth/interceptors/auth.interceptor.ts",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_auth_interceptors_auth_interceptor_ts",
-      "target": "src_app_modules_auth_services_auth_service_ts",
-      "confidence_score": 1.0
+      "target": "src_app_modules_auth_services_auth_service_ts"
     },
     {
       "relation": "imports",
@@ -1582,9 +1474,9 @@
       "source_file": "src/app/modules/auth/login/login.spec.ts",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_auth_login_login_spec_ts",
-      "target": "login_login_login",
-      "confidence_score": 1.0
+      "target": "login_login_login"
     },
     {
       "relation": "imports_from",
@@ -1593,9 +1485,9 @@
       "source_file": "src/app/modules/auth/login/login.spec.ts",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_auth_login_login_spec_ts",
-      "target": "src_app_modules_auth_login_login_ts",
-      "confidence_score": 1.0
+      "target": "src_app_modules_auth_login_login_ts"
     },
     {
       "relation": "contains",
@@ -1603,9 +1495,9 @@
       "source_file": "src/app/modules/auth/login/login.ts",
       "source_location": "L24",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_auth_login_login_ts",
-      "target": "login_login_login",
-      "confidence_score": 1.0
+      "target": "login_login_login"
     },
     {
       "relation": "imports",
@@ -1614,9 +1506,9 @@
       "source_file": "src/app/modules/auth/login/login.ts",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_auth_login_login_ts",
-      "target": "services_auth_service_authservice",
-      "confidence_score": 1.0
+      "target": "services_auth_service_authservice"
     },
     {
       "relation": "imports_from",
@@ -1625,9 +1517,9 @@
       "source_file": "src/app/modules/auth/login/login.ts",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_auth_login_login_ts",
-      "target": "src_app_modules_auth_services_auth_service_ts",
-      "confidence_score": 1.0
+      "target": "src_app_modules_auth_services_auth_service_ts"
     },
     {
       "relation": "method",
@@ -1665,9 +1557,9 @@
       "source_file": "src/app/modules/auth/models/auth.model.ts",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_auth_models_auth_model_ts",
-      "target": "models_auth_model_authuser",
-      "confidence_score": 1.0
+      "target": "models_auth_model_authuser"
     },
     {
       "relation": "contains",
@@ -1675,9 +1567,9 @@
       "source_file": "src/app/modules/auth/models/auth.model.ts",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_auth_models_auth_model_ts",
-      "target": "models_auth_model_loginrequest",
-      "confidence_score": 1.0
+      "target": "models_auth_model_loginrequest"
     },
     {
       "relation": "contains",
@@ -1685,9 +1577,9 @@
       "source_file": "src/app/modules/auth/models/auth.model.ts",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_auth_models_auth_model_ts",
-      "target": "models_auth_model_loginresponse",
-      "confidence_score": 1.0
+      "target": "models_auth_model_loginresponse"
     },
     {
       "relation": "imports_from",
@@ -1696,9 +1588,9 @@
       "source_file": "src/app/modules/auth/services/auth.service.ts",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_auth_services_auth_service_ts",
-      "target": "src_app_modules_auth_models_auth_model_ts",
-      "confidence_score": 1.0
+      "target": "src_app_modules_auth_models_auth_model_ts"
     },
     {
       "relation": "references",
@@ -1718,9 +1610,9 @@
       "source_file": "src/app/modules/auth/services/auth.service.ts",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_auth_services_auth_service_ts",
-      "target": "models_auth_model_loginrequest",
-      "confidence_score": 1.0
+      "target": "models_auth_model_loginrequest"
     },
     {
       "relation": "references",
@@ -1745,13 +1637,13 @@
       "target": "models_auth_model_authuser"
     },
     {
-      "relation": "imports",
-      "context": "import",
+      "relation": "references",
+      "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "src/app/modules/auth/services/auth.service.ts",
-      "source_location": "L6",
+      "source_location": "L46",
       "weight": 1.0,
-      "source": "src_app_modules_auth_services_auth_service_ts",
+      "source": "services_auth_service_authservice_restoreuser",
       "target": "models_auth_model_authuser",
       "confidence_score": 1.0
     },
@@ -1762,9 +1654,20 @@
       "source_file": "src/app/modules/auth/services/auth.service.ts",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_auth_services_auth_service_ts",
-      "target": "models_auth_model_loginresponse",
-      "confidence_score": 1.0
+      "target": "models_auth_model_authuser"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/modules/auth/services/auth.service.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_modules_auth_services_auth_service_ts",
+      "target": "models_auth_model_loginresponse"
     },
     {
       "relation": "imports",
@@ -1773,9 +1676,9 @@
       "source_file": "src/app/modules/auth/services/auth.service.ts",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_auth_services_auth_service_ts",
-      "target": "environments_environment_environment",
-      "confidence_score": 1.0
+      "target": "environments_environment_environment"
     },
     {
       "relation": "contains",
@@ -1783,9 +1686,9 @@
       "source_file": "src/app/modules/auth/services/auth.service.ts",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_auth_services_auth_service_ts",
-      "target": "services_auth_service_authservice",
-      "confidence_score": 1.0
+      "target": "services_auth_service_authservice"
     },
     {
       "relation": "imports_from",
@@ -1794,9 +1697,9 @@
       "source_file": "src/app/modules/auth/services/auth.service.ts",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_auth_services_auth_service_ts",
-      "target": "src_environments_environment_ts",
-      "confidence_score": 1.0
+      "target": "src_environments_environment_ts"
     },
     {
       "relation": "method",
@@ -1841,6 +1744,16 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
+      "source_file": "src/app/modules/auth/services/auth.service.ts",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "services_auth_service_authservice",
+      "target": "services_auth_service_authservice_restoreuser",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
       "source_file": "app/modules/auth/services/auth.service.ts",
       "source_location": "L34",
       "weight": 1.0,
@@ -1849,219 +1762,15 @@
       "target": "services_auth_service_authservice_token"
     },
     {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/categories.service.ts",
-      "source_location": "L14",
-      "weight": 1.0,
-      "source": "src_app_modules_categories_categories_service_ts",
-      "target": "categories_categories_service_categoriesservice",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/categories.service.ts",
-      "source_location": "L6",
-      "weight": 1.0,
-      "source": "src_app_modules_categories_categories_service_ts",
-      "target": "categories_category_model_apiresponse",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/categories.service.ts",
-      "source_location": "L6",
-      "weight": 1.0,
-      "source": "src_app_modules_categories_categories_service_ts",
-      "target": "categories_category_model_category",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/categories.service.ts",
-      "source_location": "L6",
-      "weight": 1.0,
-      "source": "src_app_modules_categories_categories_service_ts",
-      "target": "categories_category_model_categoryrequest",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/categories.service.ts",
-      "source_location": "L5",
-      "weight": 1.0,
-      "source": "src_app_modules_categories_categories_service_ts",
-      "target": "environments_environment_environment",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/categories.service.ts",
-      "source_location": "L6",
-      "weight": 1.0,
-      "source": "src_app_modules_categories_categories_service_ts",
-      "target": "src_app_modules_categories_category_model_ts",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/categories.service.ts",
-      "source_location": "L5",
-      "weight": 1.0,
-      "source": "src_app_modules_categories_categories_service_ts",
-      "target": "src_environments_environment_ts",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L17",
-      "weight": 1.0,
-      "source": "src_app_modules_categories_categories_ts",
-      "target": "src_app_modules_categories_categories_service_ts",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/categories.service.ts",
-      "source_location": "L33",
-      "weight": 1.0,
-      "source": "categories_categories_service_categoriesservice",
-      "target": "categories_categories_service_categoriesservice_archive",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/categories.service.ts",
-      "source_location": "L22",
-      "weight": 1.0,
-      "source": "categories_categories_service_categoriesservice",
-      "target": "categories_categories_service_categoriesservice_create",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/categories.service.ts",
-      "source_location": "L18",
-      "weight": 1.0,
-      "source": "categories_categories_service_categoriesservice",
-      "target": "categories_categories_service_categoriesservice_list",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/categories.service.ts",
-      "source_location": "L26",
-      "weight": 1.0,
-      "source": "categories_categories_service_categoriesservice",
-      "target": "categories_categories_service_categoriesservice_update",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L17",
-      "weight": 1.0,
-      "source": "src_app_modules_categories_categories_ts",
-      "target": "categories_categories_service_categoriesservice",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/categories.service.ts",
-      "source_location": "L18",
-      "weight": 1.0,
-      "source": "categories_categories_service_categoriesservice_list",
-      "target": "categories_category_model_category",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/categories.service.ts",
-      "source_location": "L22",
-      "weight": 1.0,
-      "source": "categories_categories_service_categoriesservice_create",
-      "target": "categories_category_model_category",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/categories.service.ts",
-      "source_location": "L22",
-      "weight": 1.0,
-      "source": "categories_categories_service_categoriesservice_create",
-      "target": "categories_category_model_categoryrequest",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/categories.service.ts",
-      "source_location": "L26",
-      "weight": 1.0,
-      "source": "categories_categories_service_categoriesservice_update",
-      "target": "categories_category_model_category",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/categories.service.ts",
-      "source_location": "L26",
-      "weight": 1.0,
-      "source": "categories_categories_service_categoriesservice_update",
-      "target": "categories_category_model_categoryrequest",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/categories.service.ts",
-      "source_location": "L33",
-      "weight": 1.0,
-      "source": "categories_categories_service_categoriesservice_archive",
-      "target": "categories_category_model_category",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/app/modules/categories/categories.spec.ts",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_categories_categories_spec_ts",
-      "target": "categories_categories_categories",
-      "confidence_score": 1.0
+      "target": "categories_categories_categories"
     },
     {
       "relation": "imports",
@@ -2070,9 +1779,9 @@
       "source_file": "src/app/modules/categories/categories.spec.ts",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_categories_categories_spec_ts",
-      "target": "environments_environment_environment",
-      "confidence_score": 1.0
+      "target": "environments_environment_environment"
     },
     {
       "relation": "imports_from",
@@ -2081,9 +1790,9 @@
       "source_file": "src/app/modules/categories/categories.spec.ts",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_categories_categories_spec_ts",
-      "target": "src_app_modules_categories_categories_ts",
-      "confidence_score": 1.0
+      "target": "src_app_modules_categories_categories_ts"
     },
     {
       "relation": "imports_from",
@@ -2092,9 +1801,9 @@
       "source_file": "src/app/modules/categories/categories.spec.ts",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_categories_categories_spec_ts",
-      "target": "src_environments_environment_ts",
-      "confidence_score": 1.0
+      "target": "src_environments_environment_ts"
     },
     {
       "relation": "contains",
@@ -2102,19 +1811,19 @@
       "source_file": "src/app/modules/categories/categories.ts",
       "source_location": "L27",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_modules_categories_categories_ts",
-      "target": "categories_categories_categories",
-      "confidence_score": 1.0
+      "target": "categories_categories_categories"
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L18",
+      "source_location": "L19",
       "weight": 1.0,
       "source": "src_app_modules_categories_categories_ts",
-      "target": "categories_category_model_category",
+      "target": "services_categories_service_categoriesservice",
       "confidence_score": 1.0
     },
     {
@@ -2122,10 +1831,32 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L18",
+      "source_location": "L19",
       "weight": 1.0,
       "source": "src_app_modules_categories_categories_ts",
-      "target": "src_app_modules_categories_category_model_ts",
+      "target": "src_app_modules_categories_services_categories_service_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/modules/categories/categories.ts",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "src_app_modules_categories_categories_ts",
+      "target": "src_app_modules_categories_types_category_types_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/modules/categories/categories.ts",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "src_app_modules_categories_categories_ts",
+      "target": "types_category_types_category",
       "confidence_score": 1.0
     },
     {
@@ -2134,9 +1865,9 @@
       "source_file": "src/app/modules/categories/categories.ts",
       "source_location": "L90",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "categories_categories_categories",
-      "target": "categories_categories_categories_addcategory",
-      "confidence_score": 1.0
+      "target": "categories_categories_categories_addcategory"
     },
     {
       "relation": "method",
@@ -2144,9 +1875,9 @@
       "source_file": "src/app/modules/categories/categories.ts",
       "source_location": "L179",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "categories_categories_categories",
-      "target": "categories_categories_categories_archive",
-      "confidence_score": 1.0
+      "target": "categories_categories_categories_archive"
     },
     {
       "relation": "method",
@@ -2154,9 +1885,9 @@
       "source_file": "src/app/modules/categories/categories.ts",
       "source_location": "L174",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "categories_categories_categories",
-      "target": "categories_categories_categories_cancelarchive",
-      "confidence_score": 1.0
+      "target": "categories_categories_categories_cancelarchive"
     },
     {
       "relation": "method",
@@ -2164,9 +1895,9 @@
       "source_file": "src/app/modules/categories/categories.ts",
       "source_location": "L163",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "categories_categories_categories",
-      "target": "categories_categories_categories_canceledit",
-      "confidence_score": 1.0
+      "target": "categories_categories_categories_canceledit"
     },
     {
       "relation": "method",
@@ -2174,9 +1905,9 @@
       "source_file": "src/app/modules/categories/categories.ts",
       "source_location": "L168",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "categories_categories_categories",
-      "target": "categories_categories_categories_confirmarchive",
-      "confidence_score": 1.0
+      "target": "categories_categories_categories_confirmarchive"
     },
     {
       "relation": "method",
@@ -2184,9 +1915,9 @@
       "source_file": "src/app/modules/categories/categories.ts",
       "source_location": "L65",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "categories_categories_categories",
-      "target": "categories_categories_categories_constructor",
-      "confidence_score": 1.0
+      "target": "categories_categories_categories_constructor"
     },
     {
       "relation": "method",
@@ -2194,9 +1925,9 @@
       "source_file": "src/app/modules/categories/categories.ts",
       "source_location": "L202",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "categories_categories_categories",
-      "target": "categories_categories_categories_isarchiving",
-      "confidence_score": 1.0
+      "target": "categories_categories_categories_isarchiving"
     },
     {
       "relation": "method",
@@ -2204,9 +1935,9 @@
       "source_file": "src/app/modules/categories/categories.ts",
       "source_location": "L198",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "categories_categories_categories",
-      "target": "categories_categories_categories_isediting",
-      "confidence_score": 1.0
+      "target": "categories_categories_categories_isediting"
     },
     {
       "relation": "method",
@@ -2214,9 +1945,9 @@
       "source_file": "src/app/modules/categories/categories.ts",
       "source_location": "L75",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "categories_categories_categories",
-      "target": "categories_categories_categories_load",
-      "confidence_score": 1.0
+      "target": "categories_categories_categories_load"
     },
     {
       "relation": "method",
@@ -2224,9 +1955,9 @@
       "source_file": "src/app/modules/categories/categories.ts",
       "source_location": "L224",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "categories_categories_categories",
-      "target": "categories_categories_categories_messagefor",
-      "confidence_score": 1.0
+      "target": "categories_categories_categories_messagefor"
     },
     {
       "relation": "method",
@@ -2234,9 +1965,9 @@
       "source_file": "src/app/modules/categories/categories.ts",
       "source_location": "L217",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "categories_categories_categories",
-      "target": "categories_categories_categories_nametaken",
-      "confidence_score": 1.0
+      "target": "categories_categories_categories_nametaken"
     },
     {
       "relation": "method",
@@ -2244,9 +1975,9 @@
       "source_file": "src/app/modules/categories/categories.ts",
       "source_location": "L206",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "categories_categories_categories",
-      "target": "categories_categories_categories_onescape",
-      "confidence_score": 1.0
+      "target": "categories_categories_categories_onescape"
     },
     {
       "relation": "method",
@@ -2254,9 +1985,9 @@
       "source_file": "src/app/modules/categories/categories.ts",
       "source_location": "L128",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "categories_categories_categories",
-      "target": "categories_categories_categories_saveedit",
-      "confidence_score": 1.0
+      "target": "categories_categories_categories_saveedit"
     },
     {
       "relation": "method",
@@ -2264,9 +1995,9 @@
       "source_file": "src/app/modules/categories/categories.ts",
       "source_location": "L211",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "categories_categories_categories",
-      "target": "categories_categories_categories_sortbyname",
-      "confidence_score": 1.0
+      "target": "categories_categories_categories_sortbyname"
     },
     {
       "relation": "method",
@@ -2274,9 +2005,9 @@
       "source_file": "src/app/modules/categories/categories.ts",
       "source_location": "L121",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "categories_categories_categories",
-      "target": "categories_categories_categories_startedit",
-      "confidence_score": 1.0
+      "target": "categories_categories_categories_startedit"
     },
     {
       "relation": "calls",
@@ -2285,9 +2016,9 @@
       "source_file": "src/app/modules/categories/categories.ts",
       "source_location": "L72",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "categories_categories_categories_constructor",
-      "target": "categories_categories_categories_load",
-      "confidence_score": 1.0
+      "target": "categories_categories_categories_load"
     },
     {
       "relation": "calls",
@@ -2296,9 +2027,9 @@
       "source_file": "src/app/modules/categories/categories.ts",
       "source_location": "L101",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "categories_categories_categories_addcategory",
-      "target": "categories_categories_categories_nametaken",
-      "confidence_score": 1.0
+      "target": "categories_categories_categories_nametaken"
     },
     {
       "relation": "calls",
@@ -2307,19 +2038,19 @@
       "source_file": "src/app/modules/categories/categories.ts",
       "source_location": "L122",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "categories_categories_categories_startedit",
-      "target": "categories_categories_categories_cancelarchive",
-      "confidence_score": 1.0
+      "target": "categories_categories_categories_cancelarchive"
     },
     {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L121",
+      "source_location": "L126",
       "weight": 1.0,
       "source": "categories_categories_categories_startedit",
-      "target": "categories_category_model_category",
+      "target": "types_category_types_category",
       "confidence_score": 1.0
     },
     {
@@ -2329,9 +2060,9 @@
       "source_file": "src/app/modules/categories/categories.ts",
       "source_location": "L142",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "categories_categories_categories_saveedit",
-      "target": "categories_categories_categories_nametaken",
-      "confidence_score": 1.0
+      "target": "categories_categories_categories_nametaken"
     },
     {
       "relation": "calls",
@@ -2340,9 +2071,9 @@
       "source_file": "src/app/modules/categories/categories.ts",
       "source_location": "L169",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "categories_categories_categories_confirmarchive",
-      "target": "categories_categories_categories_canceledit",
-      "confidence_score": 1.0
+      "target": "categories_categories_categories_canceledit"
     },
     {
       "relation": "calls",
@@ -2351,19 +2082,19 @@
       "source_file": "src/app/modules/categories/categories.ts",
       "source_location": "L207",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "categories_categories_categories_onescape",
-      "target": "categories_categories_categories_canceledit",
-      "confidence_score": 1.0
+      "target": "categories_categories_categories_canceledit"
     },
     {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L168",
+      "source_location": "L175",
       "weight": 1.0,
       "source": "categories_categories_categories_confirmarchive",
-      "target": "categories_category_model_category",
+      "target": "types_category_types_category",
       "confidence_score": 1.0
     },
     {
@@ -2373,19 +2104,19 @@
       "source_file": "src/app/modules/categories/categories.ts",
       "source_location": "L208",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "categories_categories_categories_onescape",
-      "target": "categories_categories_categories_cancelarchive",
-      "confidence_score": 1.0
+      "target": "categories_categories_categories_cancelarchive"
     },
     {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L179",
+      "source_location": "L186",
       "weight": 1.0,
       "source": "categories_categories_categories_archive",
-      "target": "categories_category_model_category",
+      "target": "types_category_types_category",
       "confidence_score": 1.0
     },
     {
@@ -2393,62 +2124,234 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L198",
+      "source_location": "L207",
       "weight": 1.0,
       "source": "categories_categories_categories_isediting",
-      "target": "categories_category_model_category",
+      "target": "types_category_types_category",
       "confidence_score": 1.0
     },
     {
       "relation": "references",
       "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/categories.ts",
-      "source_location": "L202",
-      "weight": 1.0,
-      "source": "categories_categories_categories_isarchiving",
-      "target": "categories_category_model_category",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "src/app/modules/categories/categories.ts",
       "source_location": "L211",
       "weight": 1.0,
-      "source": "categories_categories_categories_sortbyname",
-      "target": "categories_category_model_category",
+      "source": "categories_categories_categories_isarchiving",
+      "target": "types_category_types_category",
       "confidence_score": 1.0
     },
     {
-      "relation": "contains",
+      "relation": "imports",
+      "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/category.model.ts",
-      "source_location": "L18",
+      "source_file": "src/app/modules/categories/services/categories.service.ts",
+      "source_location": "L5",
       "weight": 1.0,
-      "source": "src_app_modules_categories_category_model_ts",
-      "target": "categories_category_model_apiresponse",
+      "source": "src_app_modules_categories_services_categories_service_ts",
+      "target": "environments_environment_environment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/modules/categories/services/categories.service.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_app_modules_categories_services_categories_service_ts",
+      "target": "responses_api_response_apiresponse",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/category.model.ts",
+      "source_file": "src/app/modules/categories/services/categories.service.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "src_app_modules_categories_services_categories_service_ts",
+      "target": "services_categories_service_categoriesservice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/modules/categories/services/categories.service.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_app_modules_categories_services_categories_service_ts",
+      "target": "src_app_modules_categories_types_category_types_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/modules/categories/services/categories.service.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_app_modules_categories_services_categories_service_ts",
+      "target": "src_common_responses_api_response_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/modules/categories/services/categories.service.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_app_modules_categories_services_categories_service_ts",
+      "target": "src_environments_environment_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/modules/categories/services/categories.service.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_app_modules_categories_services_categories_service_ts",
+      "target": "types_category_types_category",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/modules/categories/services/categories.service.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_app_modules_categories_services_categories_service_ts",
+      "target": "types_category_types_categoryrequest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/modules/categories/services/categories.service.ts",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "services_categories_service_categoriesservice",
+      "target": "services_categories_service_categoriesservice_archive",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/modules/categories/services/categories.service.ts",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "services_categories_service_categoriesservice",
+      "target": "services_categories_service_categoriesservice_create",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/modules/categories/services/categories.service.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "services_categories_service_categoriesservice",
+      "target": "services_categories_service_categoriesservice_list",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/modules/categories/services/categories.service.ts",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "services_categories_service_categoriesservice",
+      "target": "services_categories_service_categoriesservice_update",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/modules/categories/services/categories.service.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "services_categories_service_categoriesservice_list",
+      "target": "types_category_types_category",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/modules/categories/services/categories.service.ts",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "services_categories_service_categoriesservice_create",
+      "target": "types_category_types_category",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/modules/categories/services/categories.service.ts",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "services_categories_service_categoriesservice_create",
+      "target": "types_category_types_categoryrequest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/modules/categories/services/categories.service.ts",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "services_categories_service_categoriesservice_update",
+      "target": "types_category_types_category",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/modules/categories/services/categories.service.ts",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "services_categories_service_categoriesservice_update",
+      "target": "types_category_types_categoryrequest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/modules/categories/services/categories.service.ts",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "services_categories_service_categoriesservice_archive",
+      "target": "types_category_types_category",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/modules/categories/types/category.types.ts",
       "source_location": "L2",
       "weight": 1.0,
-      "source": "src_app_modules_categories_category_model_ts",
-      "target": "categories_category_model_category",
+      "source": "src_app_modules_categories_types_category_types_ts",
+      "target": "types_category_types_category",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "src/app/modules/categories/category.model.ts",
+      "source_file": "src/app/modules/categories/types/category.types.ts",
       "source_location": "L12",
       "weight": 1.0,
-      "source": "src_app_modules_categories_category_model_ts",
-      "target": "categories_category_model_categoryrequest",
+      "source": "src_app_modules_categories_types_category_types_ts",
+      "target": "types_category_types_categoryrequest",
       "confidence_score": 1.0
     },
     {
@@ -2457,8 +2360,18 @@
       "source_file": "src/app/theme/asset-wise-preset.ts",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_theme_asset_wise_preset_ts",
-      "target": "theme_asset_wise_preset_assetwisepreset",
+      "target": "theme_asset_wise_preset_assetwisepreset"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/common/responses/api.response.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_common_responses_api_response_ts",
+      "target": "responses_api_response_apiresponse",
       "confidence_score": 1.0
     },
     {
@@ -2467,9 +2380,9 @@
       "source_file": "src/environments/environment.dev.ts",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_environments_environment_dev_ts",
-      "target": "environments_environment_dev_environment",
-      "confidence_score": 1.0
+      "target": "environments_environment_dev_environment"
     },
     {
       "relation": "contains",
@@ -2477,9 +2390,9 @@
       "source_file": "src/environments/environment.ts",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_environments_environment_ts",
-      "target": "environments_environment_environment",
-      "confidence_score": 1.0
+      "target": "environments_environment_environment"
     },
     {
       "relation": "references",
@@ -2630,16 +2543,6 @@
       "weight": 1.0,
       "source": "layout_Layout",
       "target": "concept_signal_state"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app/layout/layout.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "layout_Layout",
-      "target": "icon_LayoutIcon"
     },
     {
       "relation": "calls",
@@ -2837,5 +2740,5 @@
       "source_file": "src/main.ts"
     }
   ],
-  "built_at_commit": "3d4f6bbd60124074d81837b9149f42e9705d1820"
+  "built_at_commit": "0a2ef8c3d979803962f291d7e04c04aae8ebd912"
 }

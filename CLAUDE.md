@@ -26,6 +26,13 @@ During PR reviews:
 * identify maintainability issues
 * suggest concise improvements
 
+## PR Review Behavior
+
+During PR reviews, DO NOT raise comments for:
+
+* Missing unit tests, integration tests, e2e tests. As this project currently not following strict TDD workflow.
+* graphify-out/** generated artifacts and are intentionally committed to the repo.
+
 ## graphify
 
 This project has a knowledge graph at graphify-out/ with god nodes, community structure, and cross-file relationships.
