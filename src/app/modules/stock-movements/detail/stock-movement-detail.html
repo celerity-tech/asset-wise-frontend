@@ -1,0 +1,66 @@
+<div class="flex h-full flex-col">
+  <!-- Header: type + when -->
+  <div class="flex items-start gap-3 border-b border-line px-5 py-4">
+    <div class="min-w-0 flex-1">
+      <span class="inline-flex items-center gap-1.5 text-lg font-semibold tracking-tight text-ink">
+        <i [class]="meta().icon" class="text-base text-muted" aria-hidden="true"></i>
+        {{ meta().label }}
+      </span>
+      <p class="mt-0.5 text-sm tabular-nums text-muted">
+        {{ movement().createdAt | date: 'medium' }}
+      </p>
+    </div>
+  </div>
+
+  <div class="min-h-0 flex-1 overflow-y-auto px-5 py-5">
+    <!-- Change summary -->
+    <div class="rounded-lg border border-line bg-panel px-4 py-3">
+      <p class="text-xs font-medium uppercase tracking-wide text-muted">Change</p>
+      <p class="mt-1 flex items-baseline gap-2">
+        <span class="text-2xl font-semibold tabular-nums text-ink">{{ changeLabel() }}</span>
+        <span class="text-sm tabular-nums text-muted">
+          new on-hand {{ movement().quantityAfter }}
+        </span>
+      </p>
+    </div>
+
+    <!-- Context -->
+    <dl class="mt-6 grid gap-x-6 gap-y-4 sm:grid-cols-2">
+      <div class="min-w-0 sm:col-span-2">
+        <dt class="text-xs font-medium uppercase tracking-wide text-muted">Product</dt>
+        <dd class="mt-0.5 truncate text-sm font-medium text-ink">{{ movement().product.name }}</dd>
+        <dd class="truncate text-xs tabular-nums text-muted">{{ movement().product.sku }}</dd>
+      </div>
+      <div class="min-w-0">
+        <dt class="text-xs font-medium uppercase tracking-wide text-muted">Location</dt>
+        <dd
+          class="mt-0.5 truncate text-sm"
+          [class.text-ink]="movement().location"
+          [class.text-muted]="!movement().location"
+        >
+          {{ movement().location?.name || 'None' }}
+        </dd>
+      </div>
+      <div class="min-w-0">
+        <dt class="text-xs font-medium uppercase tracking-wide text-muted">Supplier</dt>
+        <dd
+          class="mt-0.5 truncate text-sm"
+          [class.text-ink]="movement().supplier"
+          [class.text-muted]="!movement().supplier"
+        >
+          {{ movement().supplier?.name || 'None' }}
+        </dd>
+      </div>
+      <div class="min-w-0 sm:col-span-2">
+        <dt class="text-xs font-medium uppercase tracking-wide text-muted">Recorded by</dt>
+        <dd class="mt-0.5 truncate text-sm text-ink">{{ recordedBy() }}</dd>
+      </div>
+      @if (movement().note) {
+        <div class="min-w-0 sm:col-span-2">
+          <dt class="text-xs font-medium uppercase tracking-wide text-muted">Note</dt>
+          <dd class="mt-0.5 whitespace-pre-line text-sm text-muted">{{ movement().note }}</dd>
+        </div>
+      }
+    </dl>
+  </div>
+</div>

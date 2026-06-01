@@ -1,0 +1,232 @@
+<div class="mx-auto max-w-7xl">
+  <!-- Header -->
+  <div class="flex items-start justify-between gap-4">
+    <p class="max-w-prose text-sm text-muted">
+      The catalog: every part you stock, with its price and on-hand count. Search or scan to find one
+      fast, then select a row to see and edit the full record.
+    </p>
+    <p-button
+      type="button"
+      label="New product"
+      icon="pi pi-plus"
+      (onClick)="startCreate()"
+      styleClass="shrink-0 font-medium"
+    />
+  </div>
+
+  @if (loading() && products().length === 0) {
+    <!-- Initial load -->
+    <div class="mt-8 rounded-lg border border-line bg-counter p-4">
+      @for (placeholder of [0, 1, 2, 3, 4]; track placeholder) {
+        <div class="flex items-center justify-between gap-3 border-b border-line py-3 last:border-0">
+          <div class="h-3.5 w-48 animate-pulse rounded bg-line motion-reduce:animate-none"></div>
+          <div class="h-3.5 w-20 animate-pulse rounded bg-line motion-reduce:animate-none"></div>
+        </div>
+      }
+    </div>
+  } @else if (loadError() && products().length === 0) {
+    <div class="mt-8 rounded-lg border border-line bg-counter px-6 py-12 text-center">
+      <p class="text-sm font-medium text-ink">Couldn't load products</p>
+      <p class="mx-auto mt-1 max-w-sm text-sm text-muted">{{ loadError() }}</p>
+      <p-button type="button" label="Retry" [text]="true" (onClick)="load()" styleClass="mt-3 font-medium" />
+    </div>
+  } @else if (isEmptyCatalog()) {
+    <div class="mt-8 rounded-lg border border-dashed border-line px-6 py-16 text-center">
+      <span class="mx-auto grid h-11 w-11 place-items-center rounded-full bg-panel text-muted">
+        <i class="pi pi-box text-xl" aria-hidden="true"></i>
+      </span>
+      <p class="mt-3 text-sm font-medium text-ink">No products yet</p>
+      <p class="mx-auto mt-1 max-w-xs text-sm text-muted">
+        Add your first product to start the catalog. You can create its category, supplier, and
+        location along the way.
+      </p>
+      <p-button
+        type="button"
+        label="New product"
+        icon="pi pi-plus"
+        (onClick)="startCreate()"
+        styleClass="mt-4 font-medium"
+      />
+    </div>
+  } @else {
+    <!-- Filters -->
+    <div class="mt-6 flex flex-col gap-2 lg:flex-row lg:items-center">
+      <div class="relative min-w-0 flex-1">
+        <label for="product-search" class="sr-only">Search products</label>
+        <i
+          class="pi pi-search absolute left-3 top-1/2 -translate-y-1/2 text-sm text-muted"
+          aria-hidden="true"
+        ></i>
+        <input
+          pInputText
+          id="product-search"
+          type="search"
+          [formControl]="searchControl"
+          placeholder="Search or scan name, SKU, barcode..."
+          autocomplete="off"
+          class="w-full pl-9 text-sm"
+        />
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        <p-select
+          [formControl]="categoryControl"
+          [options]="categoryOptions()"
+          optionLabel="name"
+          optionValue="id"
+          [filter]="true"
+          filterBy="name"
+          [showClear]="true"
+          placeholder="All categories"
+          appendTo="body"
+          ariaLabel="Filter by category"
+          styleClass="text-sm"
+        />
+        <p-select
+          [formControl]="locationControl"
+          [options]="locationOptions()"
+          optionLabel="name"
+          optionValue="id"
+          [filter]="true"
+          filterBy="name"
+          [showClear]="true"
+          placeholder="All locations"
+          appendTo="body"
+          ariaLabel="Filter by location"
+          styleClass="text-sm"
+        />
+        <label
+          class="inline-flex cursor-pointer items-center gap-2 rounded-md border border-line bg-counter px-3 py-2 text-sm font-medium text-ink"
+        >
+          <p-checkbox [formControl]="lowStockControl" [binary]="true" inputId="low-stock-only" />
+          Low stock only
+        </label>
+        @if (hasFilters()) {
+          <p-button
+            type="button"
+            label="Clear"
+            icon="pi pi-times"
+            [text]="true"
+            (onClick)="clearFilters()"
+            styleClass="text-muted"
+          />
+        }
+      </div>
+    </div>
+
+    <!-- Two-pane: catalog list + detail/create -->
+    <div class="mt-4 lg:grid lg:grid-cols-[26rem_minmax(0,1fr)] lg:items-start lg:gap-5">
+      <!-- Catalog list -->
+      <section
+        aria-label="Product catalog"
+        class="overflow-hidden rounded-lg border border-line bg-counter lg:block"
+        [class.hidden]="paneOpenMobile()"
+      >
+        <p-table
+          [value]="products()"
+          dataKey="id"
+          [lazy]="true"
+          (onLazyLoad)="onLazyLoad($event)"
+          [paginator]="total() > rows"
+          [rows]="rows"
+          [first]="first()"
+          [totalRecords]="total()"
+          [loading]="loading()"
+          selectionMode="single"
+          [selection]="selected()"
+          (selectionChange)="onSelectionChange($event)"
+          [rowHover]="true"
+          styleClass="text-sm"
+        >
+          <ng-template pTemplate="body" let-product>
+            <tr [pSelectableRow]="product" class="cursor-pointer">
+              <td class="px-4 py-3">
+                <div class="flex items-center gap-3">
+                  <div class="min-w-0 flex-1">
+                    <p class="truncate font-medium text-ink">{{ product.name }}</p>
+                    <p class="truncate text-xs tabular-nums text-muted">
+                      {{ product.sku }} · {{ product.category.name }}
+                    </p>
+                  </div>
+                  <div class="shrink-0 text-right">
+                    <p class="text-sm font-medium tabular-nums text-ink">
+                      {{ product.sellingPrice | money }}
+                    </p>
+                    @switch (stockOf(product)) {
+                      @case ('out') {
+                        <p class="mt-0.5 inline-flex items-center gap-1 text-xs font-medium text-danger">
+                          <i class="pi pi-times-circle text-[0.65rem]" aria-hidden="true"></i>
+                          Out of stock
+                        </p>
+                      }
+                      @case ('low') {
+                        <p class="mt-0.5 inline-flex items-center gap-1 text-xs font-medium text-ink">
+                          <i class="pi pi-exclamation-triangle text-[0.65rem]" aria-hidden="true"></i>
+                          <span class="tabular-nums">{{ product.quantityOnHand | number }}</span> · Low
+                        </p>
+                      }
+                      @default {
+                        <p class="mt-0.5 text-xs tabular-nums text-muted">
+                          {{ product.quantityOnHand | number }} on hand
+                        </p>
+                      }
+                    }
+                  </div>
+                  <i class="pi pi-angle-right shrink-0 text-muted lg:hidden" aria-hidden="true"></i>
+                </div>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td class="px-4 py-10 text-center text-sm text-muted">
+                No products match these filters.
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </section>
+
+      <!-- Detail / create -->
+      <section
+        aria-label="Product details"
+        class="overflow-hidden rounded-lg border border-line bg-counter lg:block lg:min-h-[32rem]"
+        [class.hidden]="!paneOpenMobile()"
+      >
+        @if (mode() === 'create' || selected()) {
+          <div class="border-b border-line px-3 py-2 lg:hidden">
+            <button
+              type="button"
+              (click)="backToList()"
+              class="inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-sm font-medium text-muted outline-none transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2 focus-visible:ring-offset-counter"
+            >
+              <i class="pi pi-angle-left text-base" aria-hidden="true"></i>
+              All products
+            </button>
+          </div>
+        }
+
+        @if (mode() === 'create') {
+          <app-product-form (saved)="onCreated($event)" (cancelled)="cancelCreate()" />
+        } @else if (selected(); as product) {
+          <app-product-detail
+            [product]="product"
+            (updated)="onUpdated($event)"
+            (archived)="onArchived($event)"
+          />
+        } @else {
+          <div class="grid h-full place-items-center px-6 py-20 text-center">
+            <div>
+              <span class="mx-auto grid h-11 w-11 place-items-center rounded-full bg-panel text-muted">
+                <i class="pi pi-arrow-left text-xl" aria-hidden="true"></i>
+              </span>
+              <p class="mt-3 text-sm font-medium text-ink">Select a product</p>
+              <p class="mx-auto mt-1 max-w-xs text-sm text-muted">
+                Pick a product from the list to see its price, stock, and full details.
+              </p>
+            </div>
+          </div>
+        }
+      </section>
+    </div>
+  }
+</div>

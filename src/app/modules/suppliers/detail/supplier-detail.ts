@@ -26,6 +26,7 @@ import {
   PlatformOption,
   Supplier,
   SupplierLink,
+  SupplierPlatform,
   platformMeta,
 } from '../types/supplier.types';
 
@@ -261,7 +262,7 @@ export class SupplierDetail {
     this.addLinkError.set(null);
     this.service
       .createLink(this.supplier().id, {
-        platform: raw.platform,
+        platform: raw.platform as SupplierPlatform,
         url: raw.url.trim(),
         label: this.optional(raw.label),
       })
@@ -305,7 +306,7 @@ export class SupplierDetail {
     this.linkEditError.set(null);
     this.service
       .updateLink(this.supplier().id, id, {
-        platform: raw.platform,
+        platform: raw.platform as SupplierPlatform,
         url: raw.url.trim(),
         label: this.optional(raw.label),
       })

@@ -18,42 +18,54 @@
       </span>
     </div>
 
-    <nav class="flex-1 overflow-y-auto px-3 py-4" aria-label="Primary">
-      <ul class="flex flex-col gap-0.5">
-        @for (item of navItems; track item.label) {
-          @let active = isActive(item);
-          <li>
-            @if (item.path) {
-              <a
-                [routerLink]="item.path"
-                (click)="closeMobile()"
-                [class]="navLinkClasses(active)"
-                [attr.aria-label]="item.label"
-                [attr.aria-current]="active ? 'page' : null"
-                [attr.title]="collapsed() ? item.label : null"
-              >
-                <i [class]="item.icon" class="shrink-0 text-xl" [class.text-signal]="active" aria-hidden="true"></i>
-                <span [class]="labelClasses()">{{ item.label }}</span>
-              </a>
-            } @else {
-              <span
-                [class]="disabledItemClasses()"
-                aria-disabled="true"
-                [attr.title]="collapsed() ? item.label + ' (coming soon)' : null"
-              >
-                <i [class]="item.icon" class="shrink-0 text-xl" aria-hidden="true"></i>
-                <span [class]="labelClasses()">{{ item.label }}</span>
-                <span
-                  [class]="labelClasses()"
-                  class="ml-auto rounded border border-line px-1.5 py-0.5 text-[0.625rem] font-medium uppercase tracking-wide text-muted/70"
-                >
-                  Soon
-                </span>
-              </span>
+    <nav class="flex flex-1 flex-col gap-6 overflow-y-auto px-3 py-4" aria-label="Primary">
+      @for (section of navSections; track section.label) {
+        @let captionId = 'nav-section-' + section.label;
+        <div role="group" [attr.aria-labelledby]="captionId">
+          <p
+            [id]="captionId"
+            [class]="sectionCaptionClasses()"
+            class="px-3 pb-2 text-[0.6875rem] font-semibold uppercase tracking-wider text-muted/70"
+          >
+            {{ section.label }}
+          </p>
+          <ul class="flex flex-col gap-0.5">
+            @for (item of section.items; track item.label) {
+              @let active = isActive(item);
+              <li>
+                @if (item.path) {
+                  <a
+                    [routerLink]="item.path"
+                    (click)="closeMobile()"
+                    [class]="navLinkClasses(active)"
+                    [attr.aria-label]="item.label"
+                    [attr.aria-current]="active ? 'page' : null"
+                    [attr.title]="collapsed() ? item.label : null"
+                  >
+                    <i [class]="item.icon" class="shrink-0 text-xl" [class.text-signal]="active" aria-hidden="true"></i>
+                    <span [class]="labelClasses()">{{ item.label }}</span>
+                  </a>
+                } @else {
+                  <span
+                    [class]="disabledItemClasses()"
+                    aria-disabled="true"
+                    [attr.title]="collapsed() ? item.label + ' (coming soon)' : null"
+                  >
+                    <i [class]="item.icon" class="shrink-0 text-xl" aria-hidden="true"></i>
+                    <span [class]="labelClasses()">{{ item.label }}</span>
+                    <span
+                      [class]="labelClasses()"
+                      class="ml-auto rounded border border-line px-1.5 py-0.5 text-[0.625rem] font-medium uppercase tracking-wide text-muted/70"
+                    >
+                      Soon
+                    </span>
+                  </span>
+                }
+              </li>
             }
-          </li>
-        }
-      </ul>
+          </ul>
+        </div>
+      }
     </nav>
   </aside>
 

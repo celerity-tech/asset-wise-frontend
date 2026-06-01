@@ -1,0 +1,380 @@
+<form [formGroup]="form" (ngSubmit)="save()" novalidate class="flex h-full flex-col">
+  <!-- Header -->
+  <div class="flex items-center gap-3 border-b border-line px-5 py-4">
+    <div class="min-w-0 flex-1">
+      <h2 class="truncate text-lg font-semibold tracking-tight text-ink">
+        {{ isEdit() ? 'Edit product' : 'New product' }}
+      </h2>
+      <p class="mt-0.5 text-sm text-muted">
+        {{ isEdit() ? 'Update the catalog details for this item.' : 'Add an item to the catalog. Stock is set later through movements.' }}
+      </p>
+    </div>
+  </div>
+
+  <div class="min-h-0 flex-1 space-y-7 overflow-y-auto px-5 py-5">
+    <!-- Identity -->
+    <fieldset class="space-y-4">
+      <legend class="text-sm font-semibold tracking-tight text-ink">Identity</legend>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div class="flex flex-col gap-1.5 sm:col-span-2">
+          <label for="pf-name" class="text-sm font-medium">Product name</label>
+          <input
+            pInputText
+            #nameInput
+            id="pf-name"
+            type="text"
+            formControlName="name"
+            autocomplete="off"
+            maxlength="150"
+            placeholder="e.g. Cisco Catalyst C9200L-24P-4G Switch"
+            [invalid]="form.controls.name.touched && form.controls.name.invalid"
+            class="w-full text-sm"
+          />
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <label for="pf-sku" class="text-sm font-medium">SKU</label>
+          <input
+            pInputText
+            id="pf-sku"
+            type="text"
+            formControlName="sku"
+            autocomplete="off"
+            maxlength="64"
+            placeholder="e.g. CSC-C9200L-24P-4G"
+            [invalid]="form.controls.sku.touched && form.controls.sku.invalid"
+            class="w-full text-sm tabular-nums"
+          />
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <label for="pf-barcode" class="text-sm font-medium">
+            Barcode <span class="font-normal text-muted">(optional)</span>
+          </label>
+          <input
+            pInputText
+            id="pf-barcode"
+            type="text"
+            formControlName="barcode"
+            autocomplete="off"
+            inputmode="numeric"
+            maxlength="64"
+            placeholder="Scan or type"
+            class="w-full text-sm tabular-nums"
+          />
+        </div>
+        <div class="flex flex-col gap-1.5 sm:col-span-2">
+          <label for="pf-brand" class="text-sm font-medium">
+            Brand <span class="font-normal text-muted">(optional)</span>
+          </label>
+          <input
+            pInputText
+            id="pf-brand"
+            type="text"
+            formControlName="brand"
+            autocomplete="off"
+            maxlength="100"
+            placeholder="e.g. Cisco"
+            class="w-full text-sm"
+          />
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Pricing -->
+    <fieldset class="space-y-4">
+      <legend class="text-sm font-semibold tracking-tight text-ink">Pricing</legend>
+      <div class="grid items-end gap-4 sm:grid-cols-2">
+        <div class="flex flex-col gap-1.5">
+          <label for="pf-cost" class="text-sm font-medium">Cost price</label>
+          <p-inputnumber
+            inputId="pf-cost"
+            formControlName="costPrice"
+            mode="currency"
+            currency="PHP"
+            locale="en-PH"
+            [min]="0"
+            styleClass="w-full"
+            inputStyleClass="w-full text-sm tabular-nums"
+          />
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <label for="pf-selling" class="text-sm font-medium">Selling price</label>
+          <p-inputnumber
+            inputId="pf-selling"
+            formControlName="sellingPrice"
+            mode="currency"
+            currency="PHP"
+            locale="en-PH"
+            [min]="0"
+            styleClass="w-full"
+            inputStyleClass="w-full text-sm tabular-nums"
+          />
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Stock -->
+    <fieldset class="space-y-4">
+      <legend class="text-sm font-semibold tracking-tight text-ink">Stock</legend>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div class="flex flex-col gap-1.5">
+          <label for="pf-reorder" class="text-sm font-medium">
+            Reorder point <span class="font-normal text-muted">(optional)</span>
+          </label>
+          <p-inputnumber
+            inputId="pf-reorder"
+            formControlName="reorderPoint"
+            [min]="0"
+            [maxFractionDigits]="0"
+            [useGrouping]="false"
+            placeholder="Flag as low at or below"
+            styleClass="w-full"
+            inputStyleClass="w-full text-sm tabular-nums"
+          />
+        </div>
+        <div class="flex items-center gap-2 sm:pt-7">
+          <p-checkbox inputId="pf-serialized" formControlName="isSerialized" [binary]="true" />
+          <label for="pf-serialized" class="text-sm font-medium">Track serial numbers</label>
+        </div>
+      </div>
+      <p class="text-xs text-muted">
+        On-hand quantity isn't set here. New items start at zero and change only through stock
+        movements, so counts stay honest.
+      </p>
+    </fieldset>
+
+    <!-- Classification -->
+    <fieldset class="space-y-4">
+      <legend class="text-sm font-semibold tracking-tight text-ink">Classification</legend>
+
+      <!-- Category (required) -->
+      <div class="flex flex-col gap-1.5">
+        <label for="pf-category" class="text-sm font-medium">Category</label>
+        <div class="flex items-start gap-2">
+          <div class="min-w-0 flex-1">
+            <p-select
+              inputId="pf-category"
+              formControlName="categoryId"
+              [options]="categoryOptions()"
+              optionLabel="name"
+              optionValue="id"
+              [filter]="true"
+              filterBy="name"
+              [loading]="optionsLoading()"
+              placeholder="Choose a category"
+              appendTo="body"
+              styleClass="w-full text-sm"
+              [invalid]="form.controls.categoryId.touched && form.controls.categoryId.invalid"
+            />
+          </div>
+          <p-button
+            type="button"
+            icon="pi pi-plus"
+            label="New"
+            [outlined]="true"
+            (onClick)="openQuick(quickCategoryName); categoryPopover.toggle($event)"
+            styleClass="shrink-0 font-medium"
+            ariaLabel="Add a new category"
+          />
+        </div>
+      </div>
+
+      <!-- Supplier (optional) -->
+      <div class="flex flex-col gap-1.5">
+        <label for="pf-supplier" class="text-sm font-medium">
+          Supplier <span class="font-normal text-muted">(optional)</span>
+        </label>
+        <div class="flex items-start gap-2">
+          <div class="min-w-0 flex-1">
+            <p-select
+              inputId="pf-supplier"
+              formControlName="supplierId"
+              [options]="supplierOptions()"
+              optionLabel="name"
+              optionValue="id"
+              [filter]="true"
+              filterBy="name"
+              [showClear]="true"
+              [loading]="optionsLoading()"
+              placeholder="No supplier"
+              appendTo="body"
+              styleClass="w-full text-sm"
+            />
+          </div>
+          <p-button
+            type="button"
+            icon="pi pi-plus"
+            label="New"
+            [outlined]="true"
+            (onClick)="openQuick(quickSupplierName); supplierPopover.toggle($event)"
+            styleClass="shrink-0 font-medium"
+            ariaLabel="Add a new supplier"
+          />
+        </div>
+      </div>
+
+      <!-- Location (optional) -->
+      <div class="flex flex-col gap-1.5">
+        <label for="pf-location" class="text-sm font-medium">
+          Location <span class="font-normal text-muted">(optional)</span>
+        </label>
+        <div class="flex items-start gap-2">
+          <div class="min-w-0 flex-1">
+            <p-select
+              inputId="pf-location"
+              formControlName="locationId"
+              [options]="locationOptions()"
+              optionLabel="name"
+              optionValue="id"
+              [filter]="true"
+              filterBy="name"
+              [showClear]="true"
+              [loading]="optionsLoading()"
+              placeholder="No location"
+              appendTo="body"
+              styleClass="w-full text-sm"
+            />
+          </div>
+          <p-button
+            type="button"
+            icon="pi pi-plus"
+            label="New"
+            [outlined]="true"
+            (onClick)="openQuick(quickLocationName); locationPopover.toggle($event)"
+            styleClass="shrink-0 font-medium"
+            ariaLabel="Add a new location"
+          />
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Description -->
+    <div class="flex flex-col gap-1.5">
+      <label for="pf-description" class="text-sm font-medium">
+        Description <span class="font-normal text-muted">(optional)</span>
+      </label>
+      <textarea
+        pTextarea
+        id="pf-description"
+        formControlName="description"
+        rows="3"
+        maxlength="1000"
+        class="w-full resize-y text-sm"
+        placeholder="Specs, fitment notes, anything the counter should know."
+      ></textarea>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="border-t border-line px-5 py-4">
+    @if (formError()) {
+      <p role="alert" class="mb-3 text-sm text-danger">{{ formError() }}</p>
+    }
+    <div class="flex items-center gap-1.5">
+      <p-button
+        type="submit"
+        [label]="saving() ? 'Saving...' : isEdit() ? 'Save changes' : 'Create product'"
+        [loading]="saving()"
+        [disabled]="saving()"
+        styleClass="font-medium"
+      />
+      <p-button
+        type="button"
+        label="Cancel"
+        [text]="true"
+        (onClick)="cancel()"
+        styleClass="text-muted"
+      />
+    </div>
+  </div>
+</form>
+
+<!-- Quick-create popovers: add master data without leaving the form. -->
+<p-popover #categoryPopover>
+  <div class="w-72">
+    <label for="qc-category" class="text-sm font-medium text-ink">New category</label>
+    <div class="mt-1.5 flex items-start gap-2">
+      <input
+        pInputText
+        id="qc-category"
+        type="text"
+        [formControl]="quickCategoryName"
+        autocomplete="off"
+        maxlength="100"
+        placeholder="e.g. Networking Equipment"
+        (keydown.enter)="$event.preventDefault(); createCategory(categoryPopover)"
+        class="w-full text-sm"
+      />
+      <p-button
+        type="button"
+        [label]="quickBusy() ? '...' : 'Add'"
+        [loading]="quickBusy()"
+        [disabled]="quickBusy()"
+        (onClick)="createCategory(categoryPopover)"
+        styleClass="shrink-0 font-medium"
+      />
+    </div>
+    @if (quickError()) {
+      <p role="alert" class="mt-1.5 text-xs text-danger">{{ quickError() }}</p>
+    }
+  </div>
+</p-popover>
+
+<p-popover #supplierPopover>
+  <div class="w-72">
+    <label for="qc-supplier" class="text-sm font-medium text-ink">New supplier</label>
+    <div class="mt-1.5 flex items-start gap-2">
+      <input
+        pInputText
+        id="qc-supplier"
+        type="text"
+        [formControl]="quickSupplierName"
+        autocomplete="off"
+        maxlength="100"
+        placeholder="e.g. TechSource Distribution"
+        (keydown.enter)="$event.preventDefault(); createSupplier(supplierPopover)"
+        class="w-full text-sm"
+      />
+      <p-button
+        type="button"
+        [label]="quickBusy() ? '...' : 'Add'"
+        [loading]="quickBusy()"
+        [disabled]="quickBusy()"
+        (onClick)="createSupplier(supplierPopover)"
+        styleClass="shrink-0 font-medium"
+      />
+    </div>
+    @if (quickError()) {
+      <p role="alert" class="mt-1.5 text-xs text-danger">{{ quickError() }}</p>
+    }
+  </div>
+</p-popover>
+
+<p-popover #locationPopover>
+  <div class="w-72">
+    <label for="qc-location" class="text-sm font-medium text-ink">New location</label>
+    <div class="mt-1.5 flex items-start gap-2">
+      <input
+        pInputText
+        id="qc-location"
+        type="text"
+        [formControl]="quickLocationName"
+        autocomplete="off"
+        maxlength="100"
+        placeholder="e.g. Main Warehouse - Rack A1"
+        (keydown.enter)="$event.preventDefault(); createLocation(locationPopover)"
+        class="w-full text-sm"
+      />
+      <p-button
+        type="button"
+        [label]="quickBusy() ? '...' : 'Add'"
+        [loading]="quickBusy()"
+        [disabled]="quickBusy()"
+        (onClick)="createLocation(locationPopover)"
+        styleClass="shrink-0 font-medium"
+      />
+    </div>
+    @if (quickError()) {
+      <p role="alert" class="mt-1.5 text-xs text-danger">{{ quickError() }}</p>
+    }
+  </div>
+</p-popover>
