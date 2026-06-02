@@ -1,0 +1,188 @@
+<div class="mx-auto max-w-7xl">
+  <!-- Header -->
+  <div class="flex items-start justify-between gap-4">
+    <p class="max-w-prose text-sm text-muted">
+      Every change to stock, in order. Record a purchase, sale, return, or adjustment, and review the
+      full history. Entries can't be edited; correct a mistake by recording the opposite movement.
+    </p>
+    <p-button
+      type="button"
+      label="Record movement"
+      icon="pi pi-plus"
+      (onClick)="startRecord()"
+      styleClass="shrink-0 font-medium"
+    />
+  </div>
+
+  @if (loading() && movements().length === 0) {
+    <div class="mt-8 rounded-lg border border-line bg-counter p-4">
+      @for (placeholder of [0, 1, 2, 3, 4]; track placeholder) {
+        <div class="flex items-center justify-between gap-3 border-b border-line py-3 last:border-0">
+          <div class="h-3.5 w-52 animate-pulse rounded bg-line motion-reduce:animate-none"></div>
+          <div class="h-3.5 w-16 animate-pulse rounded bg-line motion-reduce:animate-none"></div>
+        </div>
+      }
+    </div>
+  } @else if (loadError() && movements().length === 0) {
+    <div class="mt-8 rounded-lg border border-line bg-counter px-6 py-12 text-center">
+      <p class="text-sm font-medium text-ink">Couldn't load movements</p>
+      <p class="mx-auto mt-1 max-w-sm text-sm text-muted">{{ loadError() }}</p>
+      <p-button type="button" label="Retry" [text]="true" (onClick)="load()" styleClass="mt-3 font-medium" />
+    </div>
+  } @else {
+    <!-- Filters -->
+    <div class="mt-6 flex flex-col gap-2 lg:flex-row lg:items-center">
+      <div class="min-w-0 flex-1">
+        <label for="movement-product-filter" class="sr-only">Filter by product</label>
+        <p-autocomplete
+          inputId="movement-product-filter"
+          [formControl]="productFilter"
+          [suggestions]="productSuggestions()"
+          (completeMethod)="searchProducts($event)"
+          optionLabel="name"
+          [forceSelection]="true"
+          [showClear]="true"
+          placeholder="All products"
+          appendTo="body"
+          styleClass="w-full"
+          inputStyleClass="w-full text-sm"
+        >
+          <ng-template let-product pTemplate="item">
+            <div class="flex min-w-0 flex-col py-0.5">
+              <span class="truncate text-sm font-medium text-ink">{{ product.name }}</span>
+              <span class="truncate text-xs tabular-nums text-muted">{{ product.sku }}</span>
+            </div>
+          </ng-template>
+        </p-autocomplete>
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        <p-select
+          [formControl]="typeFilter"
+          [options]="typeOptions"
+          optionLabel="label"
+          optionValue="value"
+          [showClear]="true"
+          placeholder="All types"
+          appendTo="body"
+          ariaLabel="Filter by type"
+          styleClass="text-sm"
+        />
+        <p-datepicker
+          [formControl]="dateRange"
+          selectionMode="range"
+          [readonlyInput]="true"
+          [showButtonBar]="true"
+          dateFormat="M d, yy"
+          placeholder="Any date"
+          appendTo="body"
+          inputStyleClass="text-sm"
+          ariaLabel="Filter by date range"
+        />
+        @if (hasFilters()) {
+          <p-button
+            type="button"
+            label="Clear"
+            icon="pi pi-times"
+            [text]="true"
+            (onClick)="clearFilters()"
+            styleClass="text-muted"
+          />
+        }
+      </div>
+    </div>
+
+    <!-- Two-pane: ledger + record/detail -->
+    <div class="mt-4 lg:grid lg:grid-cols-[28rem_minmax(0,1fr)] lg:items-start lg:gap-5">
+      <!-- Ledger -->
+      <section
+        aria-label="Stock movement history"
+        class="overflow-hidden rounded-lg border border-line bg-counter lg:block"
+        [class.hidden]="paneOpenMobile()"
+      >
+        <p-table
+          [value]="movements()"
+          dataKey="id"
+          [lazy]="true"
+          (onLazyLoad)="onLazyLoad($event)"
+          [paginator]="total() > rows"
+          [rows]="rows"
+          [first]="first()"
+          [totalRecords]="total()"
+          [loading]="loading()"
+          selectionMode="single"
+          [selection]="selected()"
+          (selectionChange)="onSelectionChange($event)"
+          [rowHover]="true"
+          styleClass="text-sm"
+        >
+          <ng-template pTemplate="body" let-movement>
+            <tr [pSelectableRow]="movement" class="cursor-pointer">
+              <td class="px-4 py-3">
+                <div class="flex items-center gap-3">
+                  <span
+                    class="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-panel text-muted"
+                    [attr.aria-label]="metaOf(movement.type).label"
+                  >
+                    <i [class]="metaOf(movement.type).icon" class="text-base" aria-hidden="true"></i>
+                  </span>
+                  <div class="min-w-0 flex-1">
+                    <p class="truncate font-medium text-ink">{{ movement.product.name }}</p>
+                    <p class="truncate text-xs tabular-nums text-muted">
+                      {{ metaOf(movement.type).label }} · {{ movement.createdAt | date: 'MMM d, h:mm a' }}
+                    </p>
+                  </div>
+                  <div class="shrink-0 text-right">
+                    <p
+                      class="text-sm font-semibold tabular-nums"
+                      [class.text-danger]="movement.quantityChange < 0"
+                      [class.text-ink]="movement.quantityChange >= 0"
+                    >
+                      {{ changeLabel(movement.quantityChange) }}
+                    </p>
+                    <p class="text-xs tabular-nums text-muted">{{ movement.quantityAfter }} on hand</p>
+                  </div>
+                  <i class="pi pi-angle-right shrink-0 text-muted lg:hidden" aria-hidden="true"></i>
+                </div>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td class="px-4 py-10 text-center text-sm text-muted">
+                @if (hasFilters()) {
+                  No movements match these filters.
+                } @else {
+                  No movements recorded yet. Record one using the form.
+                }
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </section>
+
+      <!-- Record / detail -->
+      <section
+        aria-label="Record or inspect movement"
+        class="overflow-hidden rounded-lg border border-line bg-counter lg:block lg:min-h-[32rem]"
+        [class.hidden]="!paneOpenMobile()"
+      >
+        <div class="border-b border-line px-3 py-2 lg:hidden">
+          <button
+            type="button"
+            (click)="backToList()"
+            class="inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-sm font-medium text-muted outline-none transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2 focus-visible:ring-offset-counter"
+          >
+            <i class="pi pi-angle-left text-base" aria-hidden="true"></i>
+            All movements
+          </button>
+        </div>
+
+        @if (mode() === 'view' && selected(); as movement) {
+          <app-stock-movement-detail [movement]="movement" />
+        } @else {
+          <app-stock-movement-record (recorded)="onRecorded()" />
+        }
+      </section>
+    </div>
+  }
+</div>

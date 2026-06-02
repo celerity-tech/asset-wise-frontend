@@ -22,11 +22,21 @@ export interface SupplierRequest {
   notes?: string;
 }
 
-/** A saved contact channel for a supplier (Messenger, WhatsApp, Email, ...): the reorder shortcut. */
+/** Contact platforms a supplier link can use. Mirrors the backend `SupplierPlatform` enum. */
+export type SupplierPlatform =
+  | 'MESSENGER'
+  | 'VIBER'
+  | 'SHOPEE'
+  | 'LAZADA'
+  | 'FACEBOOK'
+  | 'WEBSITE'
+  | 'OTHER';
+
+/** A saved contact channel for a supplier (Messenger, Viber, Facebook, ...): the reorder shortcut. */
 export interface SupplierLink {
   id: string;
   supplierId: string;
-  platform: string;
+  platform: SupplierPlatform;
   url: string;
   label: string | null;
   isArchived: boolean;
@@ -36,7 +46,7 @@ export interface SupplierLink {
 
 /** Payload for creating or updating a supplier link. */
 export interface SupplierLinkRequest {
-  platform: string;
+  platform: SupplierPlatform;
   url: string;
   label?: string;
 }
@@ -44,26 +54,28 @@ export interface SupplierLinkRequest {
 /** A selectable contact platform with its display icon. */
 export interface PlatformOption {
   readonly label: string;
-  readonly value: string;
-  /** PrimeIcons class, e.g. `pi pi-whatsapp`. */
+  readonly value: SupplierPlatform;
+  /** PrimeIcons class, e.g. `pi pi-facebook`. */
   readonly icon: string;
 }
 
 /**
- * Known platforms offered in the channel picker. The backend enum is open-ended
- * ("...etc"), so unknown values are handled gracefully by `platformMeta`.
+ * Known platforms offered in the channel picker. Mirrors the backend
+ * `SupplierPlatform` enum. The resolver (`platformMeta`) still tolerates
+ * unknown values gracefully should the enum grow.
  */
 export const SUPPLIER_PLATFORMS: readonly PlatformOption[] = [
-  { label: 'Messenger', value: 'MESSENGER', icon: 'pi pi-facebook' },
-  { label: 'WhatsApp', value: 'WHATSAPP', icon: 'pi pi-whatsapp' },
-  { label: 'Email', value: 'EMAIL', icon: 'pi pi-envelope' },
-  { label: 'Phone', value: 'PHONE', icon: 'pi pi-phone' },
+  { label: 'Messenger', value: 'MESSENGER', icon: 'pi pi-comments' },
+  { label: 'Viber', value: 'VIBER', icon: 'pi pi-phone' },
+  { label: 'Shopee', value: 'SHOPEE', icon: 'pi pi-shopping-bag' },
+  { label: 'Lazada', value: 'LAZADA', icon: 'pi pi-shopping-cart' },
+  { label: 'Facebook', value: 'FACEBOOK', icon: 'pi pi-facebook' },
   { label: 'Website', value: 'WEBSITE', icon: 'pi pi-globe' },
   { label: 'Other', value: 'OTHER', icon: 'pi pi-link' },
 ];
 
 /** Resolve a platform value to its label + icon, tolerating values the API may add later. */
-export function platformMeta(value: string): PlatformOption {
+export function platformMeta(value: SupplierPlatform): PlatformOption {
   const known = SUPPLIER_PLATFORMS.find((platform) => platform.value === value);
   if (known) {
     return known;

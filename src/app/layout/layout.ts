@@ -23,6 +23,12 @@ interface NavItem {
   readonly path?: string;
 }
 
+interface NavSection {
+  /** Caption shown above the group; named by domain, not by chore. */
+  readonly label: string;
+  readonly items: readonly NavItem[];
+}
+
 @Component({
   selector: 'app-layout',
   imports: [RouterOutlet, RouterLink, MenuModule],
@@ -35,13 +41,28 @@ export class Layout {
   private readonly authService = inject(AuthService);
   private readonly destroyRef = inject(DestroyRef);
 
-  protected readonly navItems: readonly NavItem[] = [
-    { label: 'Point of Sale', icon: 'pi pi-shopping-cart' },
-    { label: 'Inventory', icon: 'pi pi-box' },
-    { label: 'Categories', icon: 'pi pi-th-large', path: 'categories' },
-    { label: 'Suppliers', icon: 'pi pi-truck' },
-    { label: 'Sales', icon: 'pi pi-chart-line' },
-    { label: 'Settings', icon: 'pi pi-cog' },
+  protected readonly navSections: readonly NavSection[] = [
+    {
+      label: 'Operations',
+      items: [
+        { label: 'Point of Sale', icon: 'pi pi-shopping-cart' },
+        { label: 'Sales', icon: 'pi pi-chart-line' },
+        { label: 'Stock Movements', icon: 'pi pi-arrows-v', path: 'stock-movements' },
+      ],
+    },
+    {
+      label: 'Catalog',
+      items: [
+        { label: 'Products', icon: 'pi pi-box', path: 'products' },
+        { label: 'Categories', icon: 'pi pi-th-large', path: 'categories' },
+        { label: 'Suppliers', icon: 'pi pi-truck', path: 'suppliers' },
+        { label: 'Locations', icon: 'pi pi-map-marker', path: 'locations' },
+      ],
+    },
+    {
+      label: 'System',
+      items: [{ label: 'Settings', icon: 'pi pi-cog' }],
+    },
   ];
 
   /** Desktop rail collapse. */
@@ -60,7 +81,13 @@ export class Layout {
 
   protected readonly pageTitle = computed(() => {
     const url = this.currentUrl();
-    return this.navItems.find((item) => this.matches(item, url))?.label ?? 'asset-wise';
+    for (const section of this.navSections) {
+      const match = section.items.find((item) => this.matches(item, url));
+      if (match) {
+        return match.label;
+      }
+    }
+    return 'asset-wise';
   });
 
   private readonly user = this.authService.user;
@@ -152,6 +179,14 @@ export class Layout {
 
   protected labelClasses(): string {
     return this.collapsed() ? 'lg:hidden' : '';
+  }
+
+  /**
+   * Section captions stay in the accessibility tree when the rail collapses
+   * (sr-only, not hidden) so each group keeps its `aria-labelledby` name.
+   */
+  protected sectionCaptionClasses(): string {
+    return this.collapsed() ? 'lg:sr-only' : '';
   }
 
   private logout(): void {

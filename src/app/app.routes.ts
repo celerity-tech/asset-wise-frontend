@@ -19,6 +19,23 @@ export const routes: Routes = [
         path: 'categories',
         loadComponent: () => import('./modules/categories/categories').then((m) => m.Categories),
       },
+      {
+        path: 'suppliers',
+        loadComponent: () => import('./modules/suppliers/suppliers').then((m) => m.Suppliers),
+      },
+      {
+        path: 'locations',
+        loadComponent: () => import('./modules/locations/locations').then((m) => m.Locations),
+      },
+      {
+        path: 'products',
+        loadComponent: () => import('./modules/products/products').then((m) => m.Products),
+      },
+      {
+        path: 'stock-movements',
+        loadComponent: () =>
+          import('./modules/stock-movements/stock-movements').then((m) => m.StockMovements),
+      },
     ],
   },
 ];

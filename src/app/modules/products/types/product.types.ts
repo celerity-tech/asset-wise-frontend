@@ -1,0 +1,88 @@
+import { Category } from '../../categories/types/category.types';
+import { Supplier } from '../../suppliers/types/supplier.types';
+import { Location } from '../../locations/types/location.types';
+
+/**
+ * A sellable item in the catalog. The core inventory record: identity (name,
+ * SKU, barcode, brand), pricing, stock level, and classification.
+ *
+ * `costPrice` and `sellingPrice` arrive as decimal strings (the backend stores
+ * them as `Decimal`); parse with `Number(...)` for math or formatting. The
+ * related `category`, `supplier`, and `location` objects come embedded.
+ *
+ * `quantityOnHand` is read-only here: it only moves through stock movements, so
+ * the catalog never lets you type a count directly.
+ */
+export interface Product {
+  id: string;
+  name: string;
+  description: string | null;
+  sku: string;
+  barcode: string | null;
+  brand: string | null;
+  /** Decimal serialized as a string, e.g. "42850". */
+  costPrice: string;
+  /** Decimal serialized as a string, e.g. "54990". */
+  sellingPrice: string;
+  quantityOnHand: number;
+  reorderPoint: number | null;
+  isSerialized: boolean;
+  isArchived: boolean;
+
+  categoryId: string;
+  category: Category;
+
+  supplierId: string | null;
+  supplier: Supplier | null;
+
+  locationId: string | null;
+  location: Location | null;
+
+  createdAt: string;
+  updatedAt: string;
+}
+
+/**
+ * Payload for creating or updating a product. Prices are sent as numbers (the
+ * API echoes them back as decimal strings). `quantityOnHand` is intentionally
+ * absent: opening and adjusting stock happens through stock movements.
+ */
+export interface ProductRequest {
+  name: string;
+  sku: string;
+  description?: string;
+  barcode?: string;
+  brand?: string;
+  costPrice: number;
+  sellingPrice: number;
+  reorderPoint?: number | null;
+  isSerialized: boolean;
+  categoryId: string;
+  supplierId?: string | null;
+  locationId?: string | null;
+}
+
+/** Query for the server-paginated product list. Mirrors the backend `FilterProductsDTO`. */
+export interface ProductListQuery {
+  page: number;
+  /** Capped at 50 by the backend. */
+  limit: number;
+  search?: string;
+  categoryId?: string;
+  locationId?: string;
+  lowStock?: boolean;
+}
+
+/** Stock standing derived from on-hand vs reorder point. Drives the non-amber warning treatment. */
+export type StockState = 'out' | 'low' | 'ok';
+
+/** Resolve a product's stock state. Out beats low; "low" needs a reorder point to compare against. */
+export function stockState(product: Pick<Product, 'quantityOnHand' | 'reorderPoint'>): StockState {
+  if (product.quantityOnHand <= 0) {
+    return 'out';
+  }
+  if (product.reorderPoint != null && product.quantityOnHand <= product.reorderPoint) {
+    return 'low';
+  }
+  return 'ok';
+}

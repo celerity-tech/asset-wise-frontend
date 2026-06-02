@@ -1,0 +1,240 @@
+<form [formGroup]="form" (ngSubmit)="record()" novalidate class="flex h-full flex-col">
+  <!-- Header -->
+  <div class="flex items-center gap-3 border-b border-line px-5 py-4">
+    <div class="min-w-0 flex-1">
+      <h2 class="truncate text-lg font-semibold tracking-tight text-ink">Record movement</h2>
+      <p class="mt-0.5 text-sm text-muted">
+        Log stock in or out. The new on-hand count is worked out for you.
+      </p>
+    </div>
+  </div>
+
+  <div class="min-h-0 flex-1 space-y-5 overflow-y-auto px-5 py-5">
+    <!-- Product -->
+    <div class="flex flex-col gap-1.5">
+      <label for="sm-product" class="text-sm font-medium">Product</label>
+      <p-autocomplete
+        inputId="sm-product"
+        formControlName="product"
+        [suggestions]="productSuggestions()"
+        (completeMethod)="searchProducts($event)"
+        optionLabel="name"
+        [forceSelection]="true"
+        [autofocus]="true"
+        placeholder="Search or scan name, SKU, barcode..."
+        appendTo="body"
+        styleClass="w-full"
+        inputStyleClass="w-full text-sm"
+        [invalid]="form.controls.product.touched && form.controls.product.invalid"
+      >
+        <ng-template let-product pTemplate="item">
+          <div class="flex min-w-0 flex-col py-0.5">
+            <span class="truncate text-sm font-medium text-ink">{{ product.name }}</span>
+            <span class="truncate text-xs tabular-nums text-muted">
+              {{ product.sku }} · {{ product.quantityOnHand }} on hand
+            </span>
+          </div>
+        </ng-template>
+      </p-autocomplete>
+    </div>
+
+    <!-- Type + quantity -->
+    <div class="grid gap-4 sm:grid-cols-2">
+      <div class="flex flex-col gap-1.5">
+        <label for="sm-type" class="text-sm font-medium">Type</label>
+        <p-select
+          inputId="sm-type"
+          formControlName="type"
+          [options]="types"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Choose a type"
+          appendTo="body"
+          styleClass="w-full text-sm"
+          [invalid]="form.controls.type.touched && form.controls.type.invalid"
+        >
+          <ng-template let-type pTemplate="item">
+            <span class="flex items-center gap-2">
+              <i [class]="type.icon" class="text-sm text-muted" aria-hidden="true"></i>
+              {{ type.label }}
+            </span>
+          </ng-template>
+        </p-select>
+      </div>
+      <div class="flex flex-col gap-1.5">
+        <label for="sm-quantity" class="text-sm font-medium">Quantity</label>
+        <p-inputnumber
+          inputId="sm-quantity"
+          formControlName="quantity"
+          [min]="1"
+          [maxFractionDigits]="0"
+          [useGrouping]="false"
+          placeholder="0"
+          styleClass="w-full"
+          inputStyleClass="w-full text-sm tabular-nums"
+          [invalid]="form.controls.quantity.touched && form.controls.quantity.invalid"
+        />
+      </div>
+    </div>
+
+    <!-- Supplier (incoming types only) -->
+    @if (needsSupplier()) {
+      <div class="flex flex-col gap-1.5">
+        <label for="sm-supplier" class="text-sm font-medium">
+          Supplier <span class="font-normal text-muted">(optional)</span>
+        </label>
+        <div class="flex items-start gap-2">
+          <div class="min-w-0 flex-1">
+            <p-select
+              inputId="sm-supplier"
+              formControlName="supplierId"
+              [options]="supplierOptions()"
+              optionLabel="name"
+              optionValue="id"
+              [filter]="true"
+              filterBy="name"
+              [showClear]="true"
+              placeholder="No supplier"
+              appendTo="body"
+              styleClass="w-full text-sm"
+            />
+          </div>
+          <p-button
+            type="button"
+            icon="pi pi-plus"
+            label="New"
+            [outlined]="true"
+            (onClick)="openQuick(quickSupplierName); supplierPopover.toggle($event)"
+            styleClass="shrink-0 font-medium"
+            ariaLabel="Add a new supplier"
+          />
+        </div>
+      </div>
+    }
+
+    <!-- Location (optional) -->
+    <div class="flex flex-col gap-1.5">
+      <label for="sm-location" class="text-sm font-medium">
+        Location <span class="font-normal text-muted">(optional)</span>
+      </label>
+      <div class="flex items-start gap-2">
+        <div class="min-w-0 flex-1">
+          <p-select
+            inputId="sm-location"
+            formControlName="locationId"
+            [options]="locationOptions()"
+            optionLabel="name"
+            optionValue="id"
+            [filter]="true"
+            filterBy="name"
+            [showClear]="true"
+            placeholder="No location"
+            appendTo="body"
+            styleClass="w-full text-sm"
+          />
+        </div>
+        <p-button
+          type="button"
+          icon="pi pi-plus"
+          label="New"
+          [outlined]="true"
+          (onClick)="openQuick(quickLocationName); locationPopover.toggle($event)"
+          styleClass="shrink-0 font-medium"
+          ariaLabel="Add a new location"
+        />
+      </div>
+    </div>
+
+    <!-- Note -->
+    <div class="flex flex-col gap-1.5">
+      <label for="sm-note" class="text-sm font-medium">
+        Note <span class="font-normal text-muted">(optional)</span>
+      </label>
+      <textarea
+        pTextarea
+        id="sm-note"
+        formControlName="note"
+        rows="2"
+        maxlength="500"
+        class="w-full resize-y text-sm"
+        placeholder="Reason, reference number, anything worth recording."
+      ></textarea>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="border-t border-line px-5 py-4">
+    @if (formError()) {
+      <p role="alert" class="mb-3 text-sm text-danger">{{ formError() }}</p>
+    }
+    <p-button
+      type="submit"
+      [label]="saving() ? 'Recording...' : 'Record movement'"
+      icon="pi pi-check"
+      [loading]="saving()"
+      [disabled]="saving()"
+      styleClass="font-medium"
+    />
+  </div>
+</form>
+
+<!-- Quick-create popovers -->
+<p-popover #supplierPopover>
+  <div class="w-72">
+    <label for="sm-qc-supplier" class="text-sm font-medium text-ink">New supplier</label>
+    <div class="mt-1.5 flex items-start gap-2">
+      <input
+        pInputText
+        id="sm-qc-supplier"
+        type="text"
+        [formControl]="quickSupplierName"
+        autocomplete="off"
+        maxlength="100"
+        placeholder="e.g. TechSource Distribution"
+        (keydown.enter)="$event.preventDefault(); createSupplier(supplierPopover)"
+        class="w-full text-sm"
+      />
+      <p-button
+        type="button"
+        [label]="quickBusy() ? '...' : 'Add'"
+        [loading]="quickBusy()"
+        [disabled]="quickBusy()"
+        (onClick)="createSupplier(supplierPopover)"
+        styleClass="shrink-0 font-medium"
+      />
+    </div>
+    @if (quickError()) {
+      <p role="alert" class="mt-1.5 text-xs text-danger">{{ quickError() }}</p>
+    }
+  </div>
+</p-popover>
+
+<p-popover #locationPopover>
+  <div class="w-72">
+    <label for="sm-qc-location" class="text-sm font-medium text-ink">New location</label>
+    <div class="mt-1.5 flex items-start gap-2">
+      <input
+        pInputText
+        id="sm-qc-location"
+        type="text"
+        [formControl]="quickLocationName"
+        autocomplete="off"
+        maxlength="100"
+        placeholder="e.g. Main Warehouse - Rack A1"
+        (keydown.enter)="$event.preventDefault(); createLocation(locationPopover)"
+        class="w-full text-sm"
+      />
+      <p-button
+        type="button"
+        [label]="quickBusy() ? '...' : 'Add'"
+        [loading]="quickBusy()"
+        [disabled]="quickBusy()"
+        (onClick)="createLocation(locationPopover)"
+        styleClass="shrink-0 font-medium"
+      />
+    </div>
+    @if (quickError()) {
+      <p role="alert" class="mt-1.5 text-xs text-danger">{{ quickError() }}</p>
+    }
+  </div>
+</p-popover>

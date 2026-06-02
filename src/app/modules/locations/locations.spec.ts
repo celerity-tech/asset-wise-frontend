@@ -1,0 +1,40 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+
+import { environment } from '../../../environments/environment';
+import { Locations } from './locations';
+
+describe('Locations', () => {
+  let component: Locations;
+  let fixture: ComponentFixture<Locations>;
+  let httpMock: HttpTestingController;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [Locations],
+      providers: [provideHttpClient(), provideHttpClientTesting()],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(Locations);
+    component = fixture.componentInstance;
+    httpMock = TestBed.inject(HttpTestingController);
+
+    // The component loads the list on init; satisfy that request so it settles.
+    fixture.detectChanges();
+    httpMock.expectOne(`${environment.apiBaseUrl}/locations`).flush({
+      statusCode: 200,
+      message: 'ok',
+      data: [],
+    });
+    await fixture.whenStable();
+  });
+
+  afterEach(() => {
+    httpMock.verify();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
