@@ -103,8 +103,8 @@
         @case ('overview') {
           <div class="min-h-0 flex-1 overflow-y-auto px-5 py-5">
             <!-- At-a-glance: the numbers the counter reaches for first -->
-            <dl class="grid grid-cols-3 overflow-hidden rounded-lg border border-line">
-              <div class="border-r border-line px-4 py-3">
+            <dl class="grid grid-cols-1 divide-y divide-line overflow-hidden rounded-lg border border-line sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+              <div class="px-4 py-3">
                 <dt class="text-xs font-medium uppercase tracking-wide text-muted">On hand</dt>
                 <dd
                   class="mt-1 text-xl font-semibold tabular-nums"
@@ -130,7 +130,7 @@
                   }
                 }
               </div>
-              <div class="border-r border-line px-4 py-3">
+              <div class="px-4 py-3">
                 <dt class="text-xs font-medium uppercase tracking-wide text-muted">Selling price</dt>
                 <dd class="mt-1 text-xl font-semibold tabular-nums text-ink">
                   {{ product().sellingPrice | money }}
