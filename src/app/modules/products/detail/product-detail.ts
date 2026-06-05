@@ -19,6 +19,7 @@ import { Product, stockState } from '../types/product.types';
 import { httpErrorMessage } from '../../../../common/http/http-error-message';
 import { MoneyPipe } from '../utils/money.pipe';
 import { ProductForm } from '../form/product-form';
+import { PrintLabelButton } from '../../../../common/printing/print-label-button';
 
 /**
  * Detail pane for one product: an at-a-glance stock and price summary, the full
@@ -27,7 +28,7 @@ import { ProductForm } from '../form/product-form';
  */
 @Component({
   selector: 'app-product-detail',
-  imports: [ButtonModule, DatePipe, DecimalPipe, MoneyPipe, ProductForm],
+  imports: [ButtonModule, DatePipe, DecimalPipe, MoneyPipe, ProductForm, PrintLabelButton],
   templateUrl: './product-detail.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '(document:keydown.escape)': 'onEscape()' },
