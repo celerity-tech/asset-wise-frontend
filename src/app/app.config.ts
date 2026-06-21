@@ -11,6 +11,7 @@ import { providePrimeNG } from 'primeng/config';
 import { routes } from './app.routes';
 import { AssetWisePreset } from './theme/asset-wise-preset';
 import { authInterceptor } from './modules/auth/interceptors/auth.interceptor';
+import { AuthService } from './modules/auth/services/auth.service';
 import { PreferencesService } from '../common/preferences/preferences.service';
 
 export const appConfig: ApplicationConfig = {
@@ -19,6 +20,9 @@ export const appConfig: ApplicationConfig = {
     // Apply the saved per-device text size before first paint, so it never flashes
     // at the default and then jump.
     provideAppInitializer(() => inject(PreferencesService).apply()),
+    // Hydrate the auth session from the cookie before the first route is evaluated, so the
+    // route guards see the correct signed-in/out state on a hard refresh.
+    provideAppInitializer(() => inject(AuthService).loadSession()),
     provideHttpClient(withInterceptors([authInterceptor])),
     provideRouter(routes),
     providePrimeNG({

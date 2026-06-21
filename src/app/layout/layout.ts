@@ -129,8 +129,7 @@ export class Layout {
     if (!user) {
       return 'Account';
     }
-    const name = [user.firstName, user.lastName].filter(Boolean).join(' ').trim();
-    return name || user.email;
+    return user.name?.trim() || user.email;
   });
 
   protected readonly roleLabel = computed(() => this.user()?.role ?? 'Signed in');
@@ -140,8 +139,9 @@ export class Layout {
     if (!user) {
       return '·';
     }
-    const first = user.firstName?.trim()?.[0] ?? user.email[0];
-    const second = user.lastName?.trim()?.[0] ?? '';
+    const parts = (user.name?.trim() || user.email).split(/\s+/).filter(Boolean);
+    const first = parts[0]?.[0] ?? user.email[0];
+    const second = parts.length > 1 ? parts[parts.length - 1][0] : '';
     return `${first}${second}`.toUpperCase();
   });
 
@@ -302,8 +302,7 @@ export class Layout {
   }
 
   private logout(): void {
-    this.authService.logout();
-    void this.router.navigateByUrl('/auth/login');
+    this.authService.logout().subscribe(() => void this.router.navigateByUrl('/auth/login'));
   }
 
   private matches(item: NavItem, url: string): boolean {

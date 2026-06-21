@@ -83,8 +83,7 @@ export interface ReceiptData {
 export interface PosUser {
   id: string;
   email: string;
-  firstName: string | null;
-  lastName: string | null;
+  name: string | null;
   role: string;
 }
 

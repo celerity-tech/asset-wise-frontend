@@ -1,59 +1,53 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, tap } from 'rxjs';
+import { Observable, catchError, map, of, tap } from 'rxjs';
 
 import { environment } from '../../../../environments/environment';
-import { AuthUser, LoginRequest, LoginResponse } from '../models/auth.model';
-
-const TOKEN_STORAGE_KEY = 'access_token';
-const USER_STORAGE_KEY = 'auth_user';
+import { AuthUser, LoginRequest, SessionResponse, SignInResponse } from '../models/auth.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private readonly http = inject(HttpClient);
-  private readonly loginUrl = `${environment.apiBaseUrl}/auth/login`;
+  private readonly authBaseUrl = `${environment.apiBaseUrl}/auth`;
 
-  private readonly currentUser = signal<AuthUser | null>(this.restoreUser());
+  // Source of truth is the httpOnly session cookie; this signal mirrors it for the UI/guards and
+  // is hydrated once at app start via loadSession().
+  private readonly currentUser = signal<AuthUser | null>(null);
   readonly user = this.currentUser.asReadonly();
 
-  login(credentials: LoginRequest): Observable<AuthUser> {
-    return this.http.post<LoginResponse>(this.loginUrl, credentials).pipe(
-      map((response) => response.data),
-      tap((user) => this.persistSession(user)),
+  // Hydrates the session from the cookie. Returns the user (or null) and never throws, so it is
+  // safe to run as an app initializer. Better Auth returns 200 with a null body when signed out.
+  loadSession(): Observable<AuthUser | null> {
+    return this.http.get<SessionResponse | null>(`${this.authBaseUrl}/get-session`).pipe(
+      map((response) => response?.user ?? null),
+      catchError(() => of(null)),
+      tap((user) => this.currentUser.set(user)),
     );
   }
 
-  logout(): void {
-    localStorage.removeItem(TOKEN_STORAGE_KEY);
-    localStorage.removeItem(USER_STORAGE_KEY);
-    this.currentUser.set(null);
+  login(credentials: LoginRequest): Observable<AuthUser> {
+    return this.http
+      .post<SignInResponse>(`${this.authBaseUrl}/sign-in/email`, credentials)
+      .pipe(
+        map((response) => response.user),
+        tap((user) => this.currentUser.set(user)),
+      );
+  }
+
+  logout(): Observable<void> {
+    return this.http.post<void>(`${this.authBaseUrl}/sign-out`, {}).pipe(
+      catchError(() => of(undefined)),
+      tap(() => this.currentUser.set(null)),
+      map(() => undefined),
+    );
   }
 
   isAuthenticated(): boolean {
-    return this.token !== null;
+    return this.currentUser() !== null;
   }
 
-  get token(): string | null {
-    return localStorage.getItem(TOKEN_STORAGE_KEY);
-  }
-
-  private persistSession(user: AuthUser): void {
-    localStorage.setItem(TOKEN_STORAGE_KEY, user.accessToken);
-    localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
-    this.currentUser.set(user);
-  }
-
-  private restoreUser(): AuthUser | null {
-    const stored = localStorage.getItem(USER_STORAGE_KEY);
-    if (!stored) {
-      return null;
-    }
-
-    try {
-      return JSON.parse(stored) as AuthUser;
-    } catch {
-      localStorage.removeItem(USER_STORAGE_KEY);
-      return null;
-    }
+  // Clears the cached session without a network call (used when the API reports 401).
+  clearSession(): void {
+    this.currentUser.set(null);
   }
 }

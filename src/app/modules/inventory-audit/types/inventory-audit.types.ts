@@ -35,8 +35,7 @@ export type ProductUnitStatus =
  */
 export interface AuditUser {
   id: string;
-  firstName: string | null;
-  lastName: string | null;
+  name: string | null;
   email: string;
   role: string;
 }

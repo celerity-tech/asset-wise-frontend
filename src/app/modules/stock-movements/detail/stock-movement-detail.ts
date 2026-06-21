@@ -26,7 +26,6 @@ export class StockMovementDetail {
   protected readonly recordedBy = computed(() => this.userLabel(this.movement().user));
 
   private userLabel(user: MovementUser): string {
-    const name = [user.firstName, user.lastName].filter(Boolean).join(' ').trim();
-    return name || user.email;
+    return user.name?.trim() || user.email;
   }
 }
