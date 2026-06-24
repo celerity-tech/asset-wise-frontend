@@ -1,11 +1,114 @@
 <div class="mx-auto max-w-2xl">
   <p class="max-w-prose text-sm text-muted">
-    Preferences for this device. They're saved in this browser, so they stick the next time you sign
-    in here — and don't change anything for other staff or devices.
+    Manage how your shop is identified across the app, and how it reads on this device.
   </p>
+
+  <section class="mt-8" aria-labelledby="org-heading">
+    <h2 id="org-heading" class="text-sm font-semibold tracking-tight text-ink">Organization</h2>
+    <p class="mt-1 max-w-prose text-sm text-muted">
+      Your name and logo appear in the sidebar and on the sign-in screen for everyone on your team.
+    </p>
+
+    @if (organization(); as org) {
+      <div class="mt-3 rounded-lg border border-line bg-counter p-4 sm:p-5">
+        <div class="flex items-center gap-3">
+          @if (orgLogo(); as logo) {
+            <img
+              [src]="logo"
+              [alt]="org.name + ' logo'"
+              class="h-12 w-12 shrink-0 rounded-md border border-line bg-panel object-contain"
+            />
+          } @else {
+            <span
+              class="grid h-12 w-12 shrink-0 place-items-center rounded-md bg-ink text-base font-semibold text-counter"
+              aria-hidden="true"
+            >
+              {{ orgMonogram() }}
+            </span>
+          }
+          <div class="min-w-0">
+            <p class="truncate text-sm font-medium text-ink">{{ org.name }}</p>
+            <p class="mt-0.5 font-mono text-xs text-muted">{{ org.slug }}</p>
+          </div>
+          @if (roleLabel(); as role) {
+            <span
+              class="ml-auto shrink-0 rounded border border-line px-2 py-0.5 text-xs font-medium text-muted"
+            >
+              {{ role }}
+            </span>
+          }
+        </div>
+
+        <div class="mt-5 border-t border-line pt-5">
+          @if (canManage()) {
+            <form [formGroup]="nameForm" (ngSubmit)="saveOrgName()" novalidate>
+              <label for="org-name" class="block text-sm font-medium text-ink">Organization name</label>
+              <div class="mt-2 flex flex-col gap-2 sm:flex-row sm:items-start">
+                <div class="flex-1">
+                  <input
+                    pInputText
+                    id="org-name"
+                    type="text"
+                    formControlName="name"
+                    autocomplete="organization"
+                    [invalid]="nameInvalid()"
+                    [attr.aria-describedby]="nameInvalid() ? 'org-name-error' : null"
+                    class="w-full text-sm"
+                  />
+                  @if (nameInvalid()) {
+                    <p id="org-name-error" role="alert" class="mt-1.5 text-xs text-danger">
+                      Enter a name (up to 120 characters).
+                    </p>
+                  }
+                </div>
+                <p-button
+                  type="submit"
+                  [label]="saving() ? 'Saving…' : 'Save'"
+                  [loading]="saving()"
+                  [disabled]="saving() || nameForm.pristine"
+                  styleClass="font-semibold"
+                />
+              </div>
+              <p class="mt-2 min-h-4 text-xs" role="status" aria-live="polite">
+                @if (saveError(); as message) {
+                  <span class="text-danger">{{ message }}</span>
+                } @else if (saved()) {
+                  <span class="inline-flex items-center gap-1 text-success">
+                    <i class="pi pi-check text-[0.7rem]" aria-hidden="true"></i> Saved
+                  </span>
+                }
+              </p>
+            </form>
+          } @else {
+            <p class="text-sm font-medium text-ink">{{ org.name }}</p>
+            <p class="mt-1 text-sm text-muted">Only owners and admins can rename the organization.</p>
+          }
+        </div>
+
+        <div class="mt-5 border-t border-line pt-5">
+          <p class="text-sm font-medium text-ink">Logo</p>
+          <p class="mt-1 max-w-prose text-sm text-muted">
+            @if (orgLogo()) {
+              Set by asset-wise. To change it, contact your provider.
+            } @else {
+              No logo yet — your provider can add one. Contact asset-wise to set it up.
+            }
+          </p>
+        </div>
+      </div>
+    } @else {
+      <div class="mt-3 rounded-lg border border-line bg-counter p-4 sm:p-5">
+        <p class="text-sm text-muted">No organization is linked to this account.</p>
+      </div>
+    }
+  </section>
 
   <section class="mt-8" aria-labelledby="display-heading">
     <h2 id="display-heading" class="text-sm font-semibold tracking-tight text-ink">Display</h2>
+    <p class="mt-1 max-w-prose text-sm text-muted">
+      Saved in this browser, so it sticks the next time you sign in here — and doesn't change
+      anything for other staff or devices.
+    </p>
 
     <div class="mt-3 rounded-lg border border-line bg-counter p-4 sm:p-5">
       <fieldset>

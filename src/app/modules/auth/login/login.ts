@@ -9,11 +9,15 @@ import {
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { forkJoin, switchMap } from 'rxjs';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 
 import { AuthService } from '../services/auth.service';
+import { OrganizationService } from '../../organization/services/organization.service';
+import { orgMonogram } from '../../organization/organization.util';
+import { EntitlementsService } from '../../../../common/entitlements/entitlements.service';
 
 @Component({
   selector: 'app-login',
@@ -24,9 +28,18 @@ import { AuthService } from '../services/auth.service';
 export class Login {
   private readonly formBuilder = inject(FormBuilder);
   private readonly authService = inject(AuthService);
+  private readonly organizationService = inject(OrganizationService);
+  private readonly entitlements = inject(EntitlementsService);
   private readonly router = inject(Router);
 
   private readonly emailInput = viewChild<ElementRef<HTMLInputElement>>('emailInput');
+
+  /**
+   * The org this device last belonged to, if any. Brands the (pre-auth) sign-in
+   * screen for a returning counter terminal; a fresh device shows the product mark.
+   */
+  protected readonly orgIdentity = this.organizationService.readCachedIdentity();
+  protected readonly orgMonogram = orgMonogram(this.orgIdentity?.name);
 
   protected readonly loading = signal(false);
   protected readonly error = signal<string | null>(null);
@@ -55,12 +68,24 @@ export class Login {
     this.loading.set(true);
     this.error.set(null);
 
-    this.authService.login(this.form.getRawValue()).subscribe({
-      next: () => this.router.navigateByUrl('/'),
-      error: () => {
-        this.error.set('Invalid email or password.');
-        this.loading.set(false);
-      },
-    });
+    // Hydrate the org + plan entitlements before entering the app, so the shell renders branded
+    // and feature-gated (RFID, label printing) on first paint rather than after a refresh.
+    this.authService
+      .login(this.form.getRawValue())
+      .pipe(
+        switchMap(() =>
+          forkJoin([
+            this.organizationService.loadActiveOrganization(),
+            this.entitlements.load(),
+          ]),
+        ),
+      )
+      .subscribe({
+        next: () => this.router.navigateByUrl('/'),
+        error: () => {
+          this.error.set('Invalid email or password.');
+          this.loading.set(false);
+        },
+      });
   }
 }

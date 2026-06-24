@@ -1,12 +1,35 @@
 <div class="flex min-h-dvh flex-col bg-counter text-ink antialiased">
   <main class="flex flex-1 items-center justify-center px-6 pb-20 pt-12">
     <div class="w-full max-w-sm">
-      <div class="flex items-baseline gap-px text-lg font-semibold tracking-tight">
-        <span>asset</span><span class="text-muted">-wise</span>
-      </div>
-      <p class="mt-1.5 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted">
-        Counter terminal
-      </p>
+      @if (orgIdentity; as org) {
+        <div class="flex items-center gap-3">
+          @if (org.logo) {
+            <img
+              [src]="org.logo"
+              [alt]="org.name + ' logo'"
+              class="h-11 w-11 shrink-0 rounded-md border border-line bg-counter object-contain"
+            />
+          } @else {
+            <span
+              class="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-ink text-sm font-semibold text-counter"
+              aria-hidden="true"
+            >
+              {{ orgMonogram }}
+            </span>
+          }
+          <div class="min-w-0">
+            <p class="truncate text-lg font-semibold tracking-tight">{{ org.name }}</p>
+            <p class="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted">Counter terminal</p>
+          </div>
+        </div>
+      } @else {
+        <div class="flex items-baseline gap-px text-lg font-semibold tracking-tight">
+          <span>asset</span><span class="text-muted">-wise</span>
+        </div>
+        <p class="mt-1.5 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted">
+          Counter terminal
+        </p>
+      }
 
       <h1 class="mt-9 text-2xl font-semibold tracking-tight">Sign in</h1>
       <p class="mt-1.5 text-sm text-muted">Enter your credentials to open the counter.</p>

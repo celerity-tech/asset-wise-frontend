@@ -15,6 +15,9 @@ import { MenuItem } from 'primeng/api';
 import { Tooltip } from 'primeng/tooltip';
 
 import { AuthService } from '../modules/auth/services/auth.service';
+import { OrganizationService } from '../modules/organization/services/organization.service';
+import { orgMonogram } from '../modules/organization/organization.util';
+import { EntitlementsService } from '../../common/entitlements/entitlements.service';
 
 interface NavItem {
   readonly label: string;
@@ -60,9 +63,14 @@ const NEW_SHORTCUTS: Record<string, { readonly path: string }> = {
 export class Layout {
   private readonly router = inject(Router);
   private readonly authService = inject(AuthService);
+  private readonly organizationService = inject(OrganizationService);
+  private readonly entitlements = inject(EntitlementsService);
   private readonly destroyRef = inject(DestroyRef);
 
-  protected readonly navSections: readonly NavSection[] = [
+  /** Paths that belong to the POS module — hidden for BASIC (Inventory-only) tenants. */
+  private static readonly POS_PATHS = new Set(['pos', 'sales', 'reports']);
+
+  private static readonly ALL_SECTIONS: readonly NavSection[] = [
     {
       label: 'Operations',
       items: [
@@ -93,6 +101,18 @@ export class Layout {
     },
   ];
 
+  // POS items (Point of Sale, Sales, Sales Report) only show when the plan includes POS (PRO).
+  // Sections left empty by the filter are dropped so no orphan caption renders.
+  protected readonly navSections = computed<readonly NavSection[]>(() => {
+    if (this.entitlements.canUsePos()) {
+      return Layout.ALL_SECTIONS;
+    }
+    return Layout.ALL_SECTIONS.map((section) => ({
+      ...section,
+      items: section.items.filter((item) => !item.path || !Layout.POS_PATHS.has(item.path)),
+    })).filter((section) => section.items.length > 0);
+  });
+
   /** Leader-chord state: true while waiting for the second key after `N`. */
   protected readonly leader = signal(false);
   private leaderTimer: ReturnType<typeof setTimeout> | null = null;
@@ -113,7 +133,7 @@ export class Layout {
 
   protected readonly pageTitle = computed(() => {
     const url = this.currentUrl();
-    for (const section of this.navSections) {
+    for (const section of this.navSections()) {
       const match = section.items.find((item) => this.matches(item, url));
       if (match) {
         return match.label;
@@ -121,6 +141,13 @@ export class Layout {
     }
     return 'asset-wise';
   });
+
+  private readonly organization = this.organizationService.organization;
+
+  /** Tenant identity for the sidebar; falls back to the product mark when absent. */
+  protected readonly orgName = computed(() => this.organization()?.name?.trim() || null);
+  protected readonly orgLogo = computed(() => this.organization()?.logo?.trim() || null);
+  protected readonly orgMonogram = computed(() => orgMonogram(this.organization()?.name));
 
   private readonly user = this.authService.user;
 

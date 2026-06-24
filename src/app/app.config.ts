@@ -7,11 +7,14 @@ import {
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { providePrimeNG } from 'primeng/config';
+import { forkJoin, of, switchMap } from 'rxjs';
 
 import { routes } from './app.routes';
 import { AssetWisePreset } from './theme/asset-wise-preset';
 import { authInterceptor } from './modules/auth/interceptors/auth.interceptor';
 import { AuthService } from './modules/auth/services/auth.service';
+import { OrganizationService } from './modules/organization/services/organization.service';
+import { EntitlementsService } from '../common/entitlements/entitlements.service';
 import { PreferencesService } from '../common/preferences/preferences.service';
 
 export const appConfig: ApplicationConfig = {
@@ -21,8 +24,20 @@ export const appConfig: ApplicationConfig = {
     // at the default and then jump.
     provideAppInitializer(() => inject(PreferencesService).apply()),
     // Hydrate the auth session from the cookie before the first route is evaluated, so the
-    // route guards see the correct signed-in/out state on a hard refresh.
-    provideAppInitializer(() => inject(AuthService).loadSession()),
+    // route guards see the correct signed-in/out state on a hard refresh. Once a user is
+    // present, resolve their organization too so the shell renders branded on first paint.
+    provideAppInitializer(() => {
+      const auth = inject(AuthService);
+      const organizations = inject(OrganizationService);
+      const entitlements = inject(EntitlementsService);
+      return auth.loadSession().pipe(
+        switchMap((user) =>
+          user
+            ? forkJoin([organizations.loadActiveOrganization(), entitlements.load()])
+            : of(null),
+        ),
+      );
+    }),
     provideHttpClient(withInterceptors([authInterceptor])),
     provideRouter(routes),
     providePrimeNG({

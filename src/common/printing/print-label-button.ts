@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, input } from '@an
 import { ButtonModule } from 'primeng/button';
 
 import { Product } from '../../app/modules/products/types/product.types';
+import { EntitlementsService } from '../entitlements/entitlements.service';
 import { LabelPrintingService } from './label-printing.service';
 
 /**
@@ -15,7 +16,9 @@ import { LabelPrintingService } from './label-printing.service';
   imports: [ButtonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    @if (!supported) {
+    @if (!canPrintLabels()) {
+      <!-- Tenant's plan/printer config has no label printing; render nothing. -->
+    } @else if (!supported) {
       <p class="text-xs text-muted">Label printing needs Chrome or Edge over HTTPS.</p>
     } @else {
       <p-button
@@ -41,8 +44,12 @@ import { LabelPrintingService } from './label-printing.service';
 })
 export class PrintLabelButton {
   private readonly printing = inject(LabelPrintingService);
+  private readonly entitlements = inject(EntitlementsService);
 
   readonly product = input.required<Product>();
+
+  /** Gates the whole control on the tenant's plan/printer config (printerType !== NONE). */
+  protected readonly canPrintLabels = this.entitlements.canPrintLabels;
 
   protected readonly supported = this.printing.supported;
   protected readonly phase = this.printing.phase;
