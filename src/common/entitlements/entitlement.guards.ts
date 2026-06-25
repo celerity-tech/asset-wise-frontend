@@ -9,17 +9,3 @@ export const posGuard: CanActivateFn = () => {
   const router = inject(Router);
   return entitlements.canUsePos() ? true : router.parseUrl('/');
 };
-
-/** Sends a locked tenant (expired trial / deactivated org) to the lock screen. */
-export const accessGuard: CanActivateFn = () => {
-  const entitlements = inject(EntitlementsService);
-  const router = inject(Router);
-  return entitlements.locked() ? router.parseUrl('/locked') : true;
-};
-
-/** The lock screen is only reachable while actually locked; otherwise bounce home. */
-export const lockedGuard: CanActivateFn = () => {
-  const entitlements = inject(EntitlementsService);
-  const router = inject(Router);
-  return entitlements.locked() ? true : router.parseUrl('/');
-};

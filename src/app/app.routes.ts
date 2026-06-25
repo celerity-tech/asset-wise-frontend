@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 import { authGuard } from './modules/auth/guards/auth.guard';
 import { guestGuard } from './modules/auth/guards/guest.guard';
-import { accessGuard, lockedGuard, posGuard } from '../common/entitlements/entitlement.guards';
+import { posGuard } from '../common/entitlements/entitlement.guards';
 
 export const routes: Routes = [
   {
@@ -11,13 +11,8 @@ export const routes: Routes = [
     loadComponent: () => import('./modules/auth/login/login').then((m) => m.Login),
   },
   {
-    path: 'locked',
-    canActivate: [authGuard, lockedGuard],
-    loadComponent: () => import('./modules/locked/locked').then((m) => m.Locked),
-  },
-  {
     path: '',
-    canActivate: [authGuard, accessGuard],
+    canActivate: [authGuard],
     loadComponent: () => import('./layout/layout').then((m) => m.Layout),
     children: [
       { path: '', redirectTo: 'categories', pathMatch: 'full' },

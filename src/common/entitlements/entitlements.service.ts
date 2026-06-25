@@ -16,10 +16,6 @@ export type PrinterType = 'NONE' | 'NIIMBOT';
 export interface Entitlements {
   plan: OrgPlan;
   printerType: PrinterType;
-  trialEndsAt: string | null;
-  trialActive: boolean;
-  trialExpired: boolean;
-  locked: boolean;
   features: {
     inventory: boolean;
     pos: boolean;
@@ -29,17 +25,12 @@ export interface Entitlements {
 }
 
 /**
- * Safe fallback used before hydration and whenever the call fails. Note the deliberate split:
- * paid features fail CLOSED (pos hidden), but `locked` fails OPEN — a network blip must never lock
- * out a paying tenant. RFID/inventory are baseline (both plans) so they stay available.
+ * Safe fallback used before hydration and whenever the call fails. Paid features fail CLOSED
+ * (pos hidden); RFID/inventory are baseline (both plans) so they stay available.
  */
 const FALLBACK: Entitlements = {
   plan: 'BASIC',
   printerType: 'NONE',
-  trialEndsAt: null,
-  trialActive: false,
-  trialExpired: false,
-  locked: false,
   features: { inventory: true, pos: false, rfid: true, labelPrinting: false },
 };
 
@@ -59,9 +50,6 @@ export class EntitlementsService {
   readonly printerType = computed(() => this.state().printerType);
   readonly canUsePos = computed(() => this.state().features.pos);
   readonly canPrintLabels = computed(() => this.state().features.labelPrinting);
-  readonly locked = computed(() => this.state().locked);
-  readonly trialActive = computed(() => this.state().trialActive);
-  readonly trialEndsAt = computed(() => this.state().trialEndsAt);
 
   /** Hydrates entitlements for the active org. Never throws; resolves to FALLBACK on failure. */
   load(): Observable<Entitlements> {
