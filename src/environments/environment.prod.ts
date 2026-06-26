@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'https://assetwise-api.acethekawaii.work/api/v1',
+  apiBaseUrl: 'https://api.keepinv.com/api/v1',
 };
